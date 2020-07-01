@@ -1,0 +1,27 @@
+{
+  "name": "bpnt-project",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/niaahra/bpnt-project.git"
+  },
+  "author": "Niahraa Team",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://gitlab.com/niaahra/bpnt-project/issues"
+  },
+  "homepage": "https://gitlab.com/niaahra/bpnt-project#readme",
+  "devDependencies": {
+    "electron": "^9.0.5",
+    "electron-packager": "^15.0.0"
+  },
+  "dependencies": {
+    "glob": "^7.1.6",
+    "nedb": "^1.8.0"
+  }
+}
