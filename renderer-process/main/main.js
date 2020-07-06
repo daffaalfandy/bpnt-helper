@@ -20,3 +20,44 @@ btnMain.addEventListener('click', () => {
     ipcRenderer.send('main-start', data);
     console.log(data)
 });
+
+function _changeFocus(currentIndex, dest) {
+    let intIndex = parseInt(currentIndex);
+    if (dest === "next") {
+        intIndex += 1;
+    } else {
+        intIndex -= 1;
+    }
+    const nextElement = document.getElementById(`kks-number-${intIndex}`);
+    nextElement.focus();
+}
+
+
+function _onKKSKeyUpEvent(currentIndex, event) {
+    const inputKKSNumber = document.getElementById(`kks-number-${currentIndex}`);
+    const inputLength = inputKKSNumber.value.length;
+    if (inputLength === 4) {
+        if (currentIndex < 4) {
+            _changeFocus(currentIndex, "next");
+        }
+    }
+    if (inputLength === 0) {
+        if (event.keyCode === 8) {
+            if (currentIndex > 1) {
+                _changeFocus(currentIndex, "before");
+            }
+        }
+    }
+}
+function watchKKSEvent() {
+    for (let i = 1; i <= 4; i++) {
+        document.getElementById(`kks-number-${i}`).addEventListener("keyup", (e) => {
+            _onKKSKeyUpEvent(i, e);
+        });
+        document.getElementById(`kks-number-${i}`).addEventListener("click", e => {
+            document.getElementById(`kks-number-${i}`).select();
+        })
+    }
+}
+
+watchKKSEvent();
