@@ -24,6 +24,7 @@
   "dependencies": {
     "electron-settings": "^4.0.2",
     "glob": "^7.1.6",
-    "nedb": "^1.8.0"
+    "nedb": "^1.8.0",
+    "bootstrap": "^4.5.0"
   }
 }

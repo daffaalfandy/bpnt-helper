@@ -1,0 +1,100 @@
+@import "../../node_modules/bootstrap/scss/bootstrap";
+
+$body-bg: #161E37;
+$sidebar-bg: #0c1226;
+
+@mixin font($font-family, $font-file) {
+    @font-face {
+      font-family: $font-family;
+      src: url($font-file+'.woff2') format("woff2");
+      src: url($font-file+'.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+  }
+@include font("Poppins", "Poppins-Regular");
+@include font("OpenSans", "OpenSans-Regular");
+
+body {
+    background-color: $body-bg;
+    margin-left: 15vw;
+    font-family: Poppins;
+}
+
+h1 {
+    @extend .text-white;
+    text-align: center;
+    margin: 2rem 0 4rem 0;
+}
+
+label {
+    @extend .text-white;
+    margin-right: 1rem;
+}
+
+#start-form {
+    @extend .text-center;
+    @extend .form-inline;
+    display: block;
+    margin-top: 15vh;
+    label {
+        margin-bottom: 2rem;
+    }
+    input {
+        @extend .col-1;
+        max-width: 3.7em;
+    }
+}
+
+.sidenav {
+    position: fixed;
+    height: 100%;
+    width: 15vw;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: $sidebar-bg;
+    overflow-x: hidden;
+    padding-top: 8rem;
+    text-align: center;
+
+    a {
+        padding: 1rem 2vw;
+        margin: 2rem 0;
+        text-decoration: none;
+        font-size: 1.2em;
+        display: block;
+        color: $white;
+    }
+
+    a:hover {
+        @extend .sidenav-active;
+    }
+}
+
+.sidenav-active {
+    background-color: $body-bg;
+    border-radius: 1rem 0 0 1rem;
+}
+
+.main-form {
+    @extend .justify-content-center;
+    @extend .form-inline;
+    margin-bottom: 2rem;
+    
+    input {
+        margin: 0 2rem 0 1rem;
+    }
+}
+
+.main-table {
+    @extend .table;
+    @extend .text-white;
+    font-family: "OpenSans";
+    margin-top: 2rem;
+    text-align: center;
+    td {
+        vertical-align: middle;
+        border: none;
+    }
+}
