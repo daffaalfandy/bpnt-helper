@@ -1,22 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <!-- Adding CSS -->
-    <link rel="stylesheet" href="assets/style.css">
+    <meta charset="utf-8">
+    <title>Untitled</title>
+    <meta name="description" content="BPNT Helper">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+    <!--[if lt IE 9]>
+  	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- Adding template -->
+    <link rel="import" href="sections/main/main.html">
+    <link rel="import" href="sections/inventory/inventory.html">
+    <!-- End -->
 </head>
 
 <body>
-    <div class="container" id="main">
+    <div class="sidenav">
+        <a data-section="main" class="sidenav-active">Penjualan</a>
+        <a data-section="inventory">Data Barang</a>
+        <a href="#">Cetak Laporan Akhir</a>
+        <a href="#">Laba Rugi</a>
+    </div>
+    <div id="main">
 
     </div>
 
-
-    <!-- Javascript for navigation -->
-    <script>
-        require('./assets/main');
-    </script>
+    <script src="assets/main.js"></script>
 </body>
 
 </html>
