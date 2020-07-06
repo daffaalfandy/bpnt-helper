@@ -21,7 +21,7 @@ db.transactionData = new Datastore({
 
 function insertOneKPM(data) {
     db.kpmData.insert(data, (err, newDoc) => {
-    })
+    });
 }
 
 async function searchOneKPM(key, value) {

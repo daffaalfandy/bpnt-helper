@@ -14,4 +14,4 @@ ipcMain.on('main-start', async (event, data) => {
     };
     let result = await db.searchAllItems(newData);
     event.sender.send('list-items-transaction', result);
-})
+});

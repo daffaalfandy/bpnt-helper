@@ -19,14 +19,17 @@ btnMain.addEventListener('click', () => {
         kks
     }
     ipcRenderer.send('main-start', data);
-    console.log(data)
+    // Set value back to ''
+    for (i = 1; i < 5; i++) {
+        document.getElementById(`kks-number-${i}`).value = '';
+    };
 });
 
 ipcRenderer.on('res-input-kks', (event, result) => {
     if (!result) {
         inputSection.handleInputTrigger('input-kpm');
     } else {
-        // inputSection.handleInputTrigger('transaction');
+        inputSection.handleInputTrigger('transaction');
     }
 })
 

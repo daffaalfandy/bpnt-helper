@@ -1,0 +1,55 @@
+<template class="task-template">
+    <section class="section" id="transaction-section">
+        <h1>Periode BPNT</h1>
+        <!--<form>-->
+        <div class="container">
+            <div class="main-form">
+                <label for="datepick">Tanggal:</label>
+                <input class="form-control" id="datepick-goal" readonly type="date" name="datepick" />
+            </div>
+        </div>
+        <div class="container">
+            <p class="text-white text-center" id="kks-field"></p>
+            <p class="text-white text-center" id="name-field"></p>
+            <table class="main-table">
+                <thead>
+                    <tr>
+                        <th>Nomor</th>
+                        <th>Nama Barang</th>
+                        <th>Stok Barang</th>
+                        <th>Harga Beli</th>
+                        <th>Jumlah Beli</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody id="items-list">
+                    <!-- foreach table-->
+                    <tr>
+                        <td>1</td>
+                        <td>Telur</td>
+                        <td>5 kg</td>
+                        <td>20.000</td>
+                        <td>
+                            <input type="number" />
+                        </td>
+                        <td>
+                            20.000
+                        </td>
+                    </tr>
+                    <!--end foreach-->
+                    <tr>
+                        <td colspan="5" class="text-right">Total Harga</td>
+                        <td id="sum-of-price"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="container">
+            <button class="btn btn-primary float-left" id="back-btn-transaction" data-section="main">Kembali</button>
+            <button class="btn btn-primary float-right" id="btn-buy">Beli</button>
+        </div>
+        <script>
+            require("./renderer-process/main/transaction.js");
+        </script>
+    </section>
+</template>

@@ -1,4 +1,5 @@
 const { ipcRenderer } = require('electron');
+const inputSection = require('../../assets/main');
 
 const btnInput = document.getElementById('btn-input-kpm');
 let kksNum = [];
@@ -30,4 +31,5 @@ btnInput.addEventListener('click', () => {
         district,
     }
     ipcRenderer.send('kpm-data-input', data);
+    inputSection.handleInputTrigger('transaction');
 });
