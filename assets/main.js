@@ -18,6 +18,7 @@ Array.prototype.forEach.call(links, (link) => {
 document.body.addEventListener('click', (event) => {
     if (event.target.dataset.section) {
         handleSectionTrigger(event);
+        event.target.classList.add('sidenav-active');
     }
 });
 
@@ -26,7 +27,7 @@ function handleSectionTrigger(event) {
 
     // Display the current section
     const sectionId = `${event.target.dataset.section}-section`;
-    document.getElementById(sectionId).classList.add('is-shown', 'sidenav-active');
+    document.getElementById(sectionId).classList.add('is-shown');
 
     // Save currently active button in localStorage
     const buttonId = event.target.getAttribute('id');
@@ -35,10 +36,15 @@ function handleSectionTrigger(event) {
 }
 
 function hideAllSectionsAndDeselectButtons() {
-    const sections = document.querySelectorAll('.section.is-shown')
+    const sections = document.querySelectorAll('.section.is-shown');
     Array.prototype.forEach.call(sections, (section) => {
-        section.classList.remove('is-shown', 'sidenav-active');
-    })
+        section.classList.remove('is-shown');
+    });
+
+    const navs = document.querySelectorAll('.sidenav-active');
+    Array.prototype.forEach.call(navs, (nav) => {
+        nav.classList.remove('sidenav-active')
+    });
 }
 
 function handleInputTrigger(section) {

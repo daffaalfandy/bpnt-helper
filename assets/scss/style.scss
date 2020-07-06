@@ -98,10 +98,10 @@ label {
         border: none;
     }
 }
-.main {
+.section {
     position: absolute;
     top: 0;
-    left: 0;
+    left: 15vw;
     right: 0;
     bottom: 0;
     overflow-x: hidden;
@@ -110,7 +110,7 @@ label {
     pointer-events: none;
 }
 
-.main.is-shown {
+.section.is-shown {
     pointer-events: auto;
     visibility: visible;
     opacity: 1;
