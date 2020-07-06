@@ -1,0 +1,63 @@
+<template class="task-template">
+    <section class="section" id="input-kpm-section">
+        <div class="container">
+            <h1>Masukkan Data KPM</h1>
+            <div id="kpm-input-num">
+                <label for="kks-number">No. KKS :</label>
+                <div class="col-sm-6">
+                    <input type="text" readonly id="kks-num-1" name="kks-number-1" maxlength="4" pattern-"\d{4}" />
+                    <input type="text" readonly id="kks-num-2" name="kks-number-2" maxlength="4" pattern-"\d{4}" />
+                    <input type="text" readonly id="kks-num-3" name="kks-number-3" maxlength="4" pattern-"\d{4}" />
+                    <input type="text" readonly id="kks-num-4" name="kks-number-4" maxlength="4" pattern-"\d{4}" />
+                </div>
+            </div>
+            <div class="kpm-input-form">
+                <label for="kpm-name">Nama KPM :</label>
+                <div class="col-sm-6">
+                    <input type="text" id="kpm-name" />
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <p style="text-align: right; color: #fff;">Alamat</p>
+            </div>
+            <div class="kpm-input-split">
+                <label for="kpm-address-dusun">Dusun :</label>
+                <!-- <div class="col-sm-6"> -->
+                <div class="col-sm-3">
+                    <input class="form-control" id="kpm-address-dusun" />
+                </div>
+                <div class="col-sm-1">
+                    <label for="kpm-address-rt">RT:</label>
+                </div>
+                <div class=" col-sm-2">
+                    <input class="form-control" id="kpm-address-rt" />
+                </div>
+                <!-- </div> -->
+            </div>
+            <div class="kpm-input-form">
+                <label for="kpm-address-village">Desa :</label>
+                <div class="col-sm-6">
+                    <input type="text" id="kpm-address-village" />
+                </div>
+            </div>
+            <div class="kpm-input-form">
+                <label for="kpm-address-district">Kecamatan :</label>
+                <div class="col-sm-6">
+                    <input type="text" id="kpm-address-district" />
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-10">
+                    <div class="float-right">
+                        <button id="btn-input-kpm" datasection="main" class="btn btn-primary">Mulai</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            require('./renderer-process/main/input-kpm');
+        </script>
+    </section>
+</template>

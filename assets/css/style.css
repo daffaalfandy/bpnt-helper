@@ -587,7 +587,7 @@ pre code {
     max-width: 1140px;
   }
 }
-.row {
+.row, .kpm-input-split, .kpm-input-form, #kpm-input-num {
   display: flex;
   flex-wrap: wrap;
   margin-right: -15px;
@@ -608,7 +608,7 @@ pre code {
 .col-xl-auto, .col-xl-12, .col-xl-11, .col-xl-10, .col-xl-9, .col-xl-8, .col-xl-7, .col-xl-6, .col-xl-5, .col-xl-4, .col-xl-3, .col-xl-2, .col-xl-1, .col-lg,
 .col-lg-auto, .col-lg-12, .col-lg-11, .col-lg-10, .col-lg-9, .col-lg-8, .col-lg-7, .col-lg-6, .col-lg-5, .col-lg-4, .col-lg-3, .col-lg-2, .col-lg-1, .col-md,
 .col-md-auto, .col-md-12, .col-md-11, .col-md-10, .col-md-9, .col-md-8, .col-md-7, .col-md-6, .col-md-5, .col-md-4, .col-md-3, .col-md-2, .col-md-1, .col-sm,
-.col-sm-auto, .col-sm-12, .col-sm-11, .col-sm-10, .col-sm-9, .col-sm-8, .col-sm-7, .col-sm-6, .col-sm-5, .col-sm-4, .col-sm-3, .col-sm-2, .col-sm-1, .col,
+.col-sm-auto, .col-sm-12, .col-sm-11, .col-sm-10, .col-sm-9, .col-sm-8, .col-sm-7, .col-sm-6, .col-sm-5, .col-sm-4, .kpm-input-split label, .kpm-input-form label, #kpm-input-num label, .col-sm-3, .col-sm-2, .col-sm-1, .col,
 .col-auto, .col-12, .col-11, .col-10, .col-9, .col-8, .col-7, .col-6, .col-5, .col-4, .col-3, .col-2, .col-1, #start-form input {
   position: relative;
   width: 100%;
@@ -882,7 +882,7 @@ pre code {
     max-width: 25%;
   }
 
-  .col-sm-4 {
+  .col-sm-4, .kpm-input-split label, .kpm-input-form label, #kpm-input-num label {
     flex: 0 0 33.3333333333%;
     max-width: 33.3333333333%;
   }
@@ -1983,7 +1983,7 @@ pre code {
   border: 0;
 }
 
-.form-control {
+.form-control, .kpm-input-form div input, #kpm-input-num input {
   display: block;
   width: 100%;
   height: calc(1.5em + 0.75rem + 2px);
@@ -1999,38 +1999,44 @@ pre code {
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 @media (prefers-reduced-motion: reduce) {
-  .form-control {
+  .form-control, .kpm-input-form div input, #kpm-input-num input {
     transition: none;
   }
 }
-.form-control::-ms-expand {
+.form-control::-ms-expand, .kpm-input-form div input::-ms-expand, #kpm-input-num input::-ms-expand {
   background-color: transparent;
   border: 0;
 }
-.form-control:-moz-focusring {
+.form-control:-moz-focusring, .kpm-input-form div input:-moz-focusring, #kpm-input-num input:-moz-focusring {
   color: transparent;
   text-shadow: 0 0 0 #495057;
 }
-.form-control:focus {
+.form-control:focus, .kpm-input-form div input:focus, #kpm-input-num input:focus {
   color: #495057;
   background-color: #fff;
   border-color: #80bdff;
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
-.form-control::placeholder {
+.form-control::placeholder, .kpm-input-form div input::placeholder, #kpm-input-num input::placeholder {
   color: #6c757d;
   opacity: 1;
 }
-.form-control:disabled, .form-control[readonly] {
+.form-control:disabled, .kpm-input-form div input:disabled, #kpm-input-num input:disabled, .form-control[readonly], .kpm-input-form div input[readonly], #kpm-input-num input[readonly] {
   background-color: #e9ecef;
   opacity: 1;
 }
 
-input[type=date].form-control,
+input[type=date].form-control, .kpm-input-form div input[type=date], #kpm-input-num input[type=date],
 input[type=time].form-control,
+.kpm-input-form div input[type=time],
+#kpm-input-num input[type=time],
 input[type=datetime-local].form-control,
-input[type=month].form-control {
+.kpm-input-form div input[type=datetime-local],
+#kpm-input-num input[type=datetime-local],
+input[type=month].form-control,
+.kpm-input-form div input[type=month],
+#kpm-input-num input[type=month] {
   appearance: none;
 }
 
@@ -2108,7 +2114,7 @@ textarea.form-control {
   height: auto;
 }
 
-.form-group {
+.form-group, .kpm-input-split, .kpm-input-form {
   margin-bottom: 1rem;
 }
 
@@ -2191,7 +2197,7 @@ textarea.form-control {
   display: block;
 }
 
-.was-validated .form-control:valid, .form-control.is-valid {
+.was-validated .form-control:valid, .was-validated .kpm-input-form div input:valid, .kpm-input-form div .was-validated input:valid, .was-validated #kpm-input-num input:valid, #kpm-input-num .was-validated input:valid, .form-control.is-valid, .kpm-input-form div input.is-valid, #kpm-input-num input.is-valid {
   border-color: #28a745;
   padding-right: calc(1.5em + 0.75rem);
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath fill='%2328a745' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
@@ -2199,7 +2205,7 @@ textarea.form-control {
   background-position: right calc(0.375em + 0.1875rem) center;
   background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
 }
-.was-validated .form-control:valid:focus, .form-control.is-valid:focus {
+.was-validated .form-control:valid:focus, .was-validated .kpm-input-form div input:valid:focus, .kpm-input-form div .was-validated input:valid:focus, .was-validated #kpm-input-num input:valid:focus, #kpm-input-num .was-validated input:valid:focus, .form-control.is-valid:focus, .kpm-input-form div input.is-valid:focus, #kpm-input-num input.is-valid:focus {
   border-color: #28a745;
   box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
 }
@@ -2283,7 +2289,7 @@ textarea.form-control {
   display: block;
 }
 
-.was-validated .form-control:invalid, .form-control.is-invalid {
+.was-validated .form-control:invalid, .was-validated .kpm-input-form div input:invalid, .kpm-input-form div .was-validated input:invalid, .was-validated #kpm-input-num input:invalid, #kpm-input-num .was-validated input:invalid, .form-control.is-invalid, .kpm-input-form div input.is-invalid, #kpm-input-num input.is-invalid {
   border-color: #dc3545;
   padding-right: calc(1.5em + 0.75rem);
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%23dc3545' viewBox='0 0 12 12'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
@@ -2291,7 +2297,7 @@ textarea.form-control {
   background-position: right calc(0.375em + 0.1875rem) center;
   background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
 }
-.was-validated .form-control:invalid:focus, .form-control.is-invalid:focus {
+.was-validated .form-control:invalid:focus, .was-validated .kpm-input-form div input:invalid:focus, .kpm-input-form div .was-validated input:invalid:focus, .was-validated #kpm-input-num input:invalid:focus, #kpm-input-num .was-validated input:invalid:focus, .form-control.is-invalid:focus, .kpm-input-form div input.is-invalid:focus, #kpm-input-num input.is-invalid:focus {
   border-color: #dc3545;
   box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
 }
@@ -2345,61 +2351,62 @@ textarea.form-control {
   box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
 }
 
-.form-inline, .main-form, #start-form {
+.form-inline, #kpm-input-num, .main-form, #start-form {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
 }
-.form-inline .form-check, .main-form .form-check, #start-form .form-check {
+.form-inline .form-check, #kpm-input-num .form-check, .main-form .form-check, #start-form .form-check {
   width: 100%;
 }
 @media (min-width: 576px) {
-  .form-inline label, .main-form label, #start-form label {
+  .form-inline label, #kpm-input-num label, .main-form label, #start-form label {
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: 0;
   }
-  .form-inline .form-group, .main-form .form-group, #start-form .form-group {
+  .form-inline .form-group, .form-inline .kpm-input-split, .form-inline .kpm-input-form, #kpm-input-num .form-group, #kpm-input-num .kpm-input-split, #kpm-input-num .kpm-input-form, .main-form .form-group, .main-form .kpm-input-split, .main-form .kpm-input-form, #start-form .form-group, #start-form .kpm-input-split, #start-form .kpm-input-form {
     display: flex;
     flex: 0 0 auto;
     flex-flow: row wrap;
     align-items: center;
     margin-bottom: 0;
   }
-  .form-inline .form-control, .main-form .form-control, #start-form .form-control {
+  .form-inline .form-control, .form-inline .kpm-input-form div input, .kpm-input-form div .form-inline input, #kpm-input-num .form-control, #kpm-input-num input, .main-form .form-control, .main-form .kpm-input-form div input, .kpm-input-form div .main-form input, #start-form .form-control, #start-form .kpm-input-form div input, .kpm-input-form div #start-form input {
     display: inline-block;
     width: auto;
     vertical-align: middle;
   }
-  .form-inline .form-control-plaintext, .main-form .form-control-plaintext, #start-form .form-control-plaintext {
+  .form-inline .form-control-plaintext, #kpm-input-num .form-control-plaintext, .main-form .form-control-plaintext, #start-form .form-control-plaintext {
     display: inline-block;
   }
-  .form-inline .input-group, .main-form .input-group, #start-form .input-group,
+  .form-inline .input-group, #kpm-input-num .input-group, .main-form .input-group, #start-form .input-group,
 .form-inline .custom-select,
+#kpm-input-num .custom-select,
 .main-form .custom-select,
 #start-form .custom-select {
     width: auto;
   }
-  .form-inline .form-check, .main-form .form-check, #start-form .form-check {
+  .form-inline .form-check, #kpm-input-num .form-check, .main-form .form-check, #start-form .form-check {
     display: flex;
     align-items: center;
     justify-content: center;
     width: auto;
     padding-left: 0;
   }
-  .form-inline .form-check-input, .main-form .form-check-input, #start-form .form-check-input {
+  .form-inline .form-check-input, #kpm-input-num .form-check-input, .main-form .form-check-input, #start-form .form-check-input {
     position: relative;
     flex-shrink: 0;
     margin-top: 0;
     margin-right: 0.25rem;
     margin-left: 0;
   }
-  .form-inline .custom-control, .main-form .custom-control, #start-form .custom-control {
+  .form-inline .custom-control, #kpm-input-num .custom-control, .main-form .custom-control, #start-form .custom-control {
     align-items: center;
     justify-content: center;
   }
-  .form-inline .custom-control-label, .main-form .custom-control-label, #start-form .custom-control-label {
+  .form-inline .custom-control-label, #kpm-input-num .custom-control-label, .main-form .custom-control-label, #start-form .custom-control-label {
     margin-bottom: 0;
   }
 }
@@ -3300,7 +3307,7 @@ input[type=button].btn-block {
   align-items: stretch;
   width: 100%;
 }
-.input-group > .form-control,
+.input-group > .form-control, .kpm-input-form div .input-group > input, #kpm-input-num .input-group > input,
 .input-group > .form-control-plaintext,
 .input-group > .custom-select,
 .input-group > .custom-file {
@@ -3310,21 +3317,31 @@ input[type=button].btn-block {
   min-width: 0;
   margin-bottom: 0;
 }
-.input-group > .form-control + .form-control,
+.input-group > .form-control + .form-control, .kpm-input-form div .input-group > input + .form-control, .kpm-input-form div .input-group > .form-control + input, .kpm-input-form div .input-group > input + input, #kpm-input-num .input-group > input + .form-control, #kpm-input-num .input-group > .form-control + input, #kpm-input-num .input-group > input + input,
 .input-group > .form-control + .custom-select,
+.kpm-input-form div .input-group > input + .custom-select,
+#kpm-input-num .input-group > input + .custom-select,
 .input-group > .form-control + .custom-file,
+.kpm-input-form div .input-group > input + .custom-file,
+#kpm-input-num .input-group > input + .custom-file,
 .input-group > .form-control-plaintext + .form-control,
+.kpm-input-form div .input-group > .form-control-plaintext + input,
+#kpm-input-num .input-group > .form-control-plaintext + input,
 .input-group > .form-control-plaintext + .custom-select,
 .input-group > .form-control-plaintext + .custom-file,
 .input-group > .custom-select + .form-control,
+.kpm-input-form div .input-group > .custom-select + input,
+#kpm-input-num .input-group > .custom-select + input,
 .input-group > .custom-select + .custom-select,
 .input-group > .custom-select + .custom-file,
 .input-group > .custom-file + .form-control,
+.kpm-input-form div .input-group > .custom-file + input,
+#kpm-input-num .input-group > .custom-file + input,
 .input-group > .custom-file + .custom-select,
 .input-group > .custom-file + .custom-file {
   margin-left: -1px;
 }
-.input-group > .form-control:focus,
+.input-group > .form-control:focus, .kpm-input-form div .input-group > input:focus, #kpm-input-num .input-group > input:focus,
 .input-group > .custom-select:focus,
 .input-group > .custom-file .custom-file-input:focus ~ .custom-file-label {
   z-index: 3;
@@ -3332,12 +3349,12 @@ input[type=button].btn-block {
 .input-group > .custom-file .custom-file-input:focus {
   z-index: 4;
 }
-.input-group > .form-control:not(:last-child),
+.input-group > .form-control:not(:last-child), .kpm-input-form div .input-group > input:not(:last-child), #kpm-input-num .input-group > input:not(:last-child),
 .input-group > .custom-select:not(:last-child) {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
 }
-.input-group > .form-control:not(:first-child),
+.input-group > .form-control:not(:first-child), .kpm-input-form div .input-group > input:not(:first-child), #kpm-input-num .input-group > input:not(:first-child),
 .input-group > .custom-select:not(:first-child) {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
@@ -3407,12 +3424,12 @@ input[type=button].btn-block {
   margin-top: 0;
 }
 
-.input-group-lg > .form-control:not(textarea),
+.input-group-lg > .form-control:not(textarea), .kpm-input-form div .input-group-lg > input:not(textarea), #kpm-input-num .input-group-lg > input:not(textarea),
 .input-group-lg > .custom-select {
   height: calc(1.5em + 1rem + 2px);
 }
 
-.input-group-lg > .form-control,
+.input-group-lg > .form-control, .kpm-input-form div .input-group-lg > input, #kpm-input-num .input-group-lg > input,
 .input-group-lg > .custom-select,
 .input-group-lg > .input-group-prepend > .input-group-text,
 .input-group-lg > .input-group-append > .input-group-text,
@@ -3424,12 +3441,12 @@ input[type=button].btn-block {
   border-radius: 0.3rem;
 }
 
-.input-group-sm > .form-control:not(textarea),
+.input-group-sm > .form-control:not(textarea), .kpm-input-form div .input-group-sm > input:not(textarea), #kpm-input-num .input-group-sm > input:not(textarea),
 .input-group-sm > .custom-select {
   height: calc(1.5em + 0.5rem + 2px);
 }
 
-.input-group-sm > .form-control,
+.input-group-sm > .form-control, .kpm-input-form div .input-group-sm > input, #kpm-input-num .input-group-sm > input,
 .input-group-sm > .custom-select,
 .input-group-sm > .input-group-prepend > .input-group-text,
 .input-group-sm > .input-group-append > .input-group-text,
@@ -7821,7 +7838,10 @@ button.bg-dark:focus {
 }
 
 .mt-auto,
-.my-auto {
+.my-auto,
+.kpm-input-split label,
+.kpm-input-form label,
+#kpm-input-num label {
   margin-top: auto !important;
 }
 
@@ -7831,7 +7851,10 @@ button.bg-dark:focus {
 }
 
 .mb-auto,
-.my-auto {
+.my-auto,
+.kpm-input-split label,
+.kpm-input-form label,
+#kpm-input-num label {
   margin-bottom: auto !important;
 }
 
@@ -9944,13 +9967,13 @@ label {
 
 #start-form {
   display: block;
-  margin-top: 15vh;
 }
 #start-form label {
   margin-bottom: 2rem;
+  margin-top: 5rem;
 }
 #start-form input {
-  max-width: 3.7em;
+  max-width: 5em;
 }
 
 .sidenav {
@@ -10013,6 +10036,30 @@ label {
   opacity: 1;
   transform: translateX(0);
   transition: visibility 0s 0s linear, opacity 0.36s ease-out, transform 0.36s ease-out;
+}
+
+#kpm-input-num {
+  margin-bottom: 2rem;
+}
+#kpm-input-num input {
+  max-width: 4em;
+}
+#kpm-input-num label {
+  justify-content: flex-end;
+}
+
+.kpm-input-form {
+  margin-bottom: 2rem;
+}
+.kpm-input-form label {
+  text-align: right;
+}
+
+.kpm-input-split {
+  margin-bottom: 2rem;
+}
+.kpm-input-split label {
+  text-align: right;
 }
 
 /*# sourceMappingURL=style.css.map */

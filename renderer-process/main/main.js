@@ -1,4 +1,5 @@
 const { ipcRenderer } = require('electron');
+const inputSection = require('../../assets/main');
 
 const btnMain = document.getElementById('btn-main');
 
@@ -7,9 +8,9 @@ btnMain.addEventListener('click', () => {
     let year = datepick[0];
     let month = datepick[1];
     let date = datepick[2];
-    let kks = '';
+    let kks = [];
     for (i = 1; i < 5; i++) {
-        kks += document.getElementById(`kks-number-${i}`).value;
+        kks[i - 1] = document.getElementById(`kks-number-${i}`).value;
     };
     let data = {
         date,
@@ -20,6 +21,14 @@ btnMain.addEventListener('click', () => {
     ipcRenderer.send('main-start', data);
     console.log(data)
 });
+
+ipcRenderer.on('res-input-kks', (event, result) => {
+    if (!result) {
+        inputSection.handleInputTrigger('input-kpm');
+    } else {
+        // inputSection.handleInputTrigger('transaction');
+    }
+})
 
 function _changeFocus(currentIndex, dest) {
     let intIndex = parseInt(currentIndex);

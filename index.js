@@ -13,7 +13,7 @@ function initialize() {
 
     function createWindow() {
         const windowOptions = {
-            width: 1024,
+            width: 1366,
             height: 768,
             title: 'BPNT Helper',
             webPreferences: {

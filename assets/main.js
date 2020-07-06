@@ -17,8 +17,14 @@ Array.prototype.forEach.call(links, (link) => {
 // Handle event listener
 document.body.addEventListener('click', (event) => {
     if (event.target.dataset.section) {
+        if (event.target.dataset.nav) {
+            const navs = document.querySelectorAll('.sidenav-active');
+            Array.prototype.forEach.call(navs, (nav) => {
+                nav.classList.remove('sidenav-active')
+            });
+            event.target.classList.add('sidenav-active');
+        }
         handleSectionTrigger(event);
-        event.target.classList.add('sidenav-active');
     }
 });
 
@@ -39,11 +45,6 @@ function hideAllSectionsAndDeselectButtons() {
     const sections = document.querySelectorAll('.section.is-shown');
     Array.prototype.forEach.call(sections, (section) => {
         section.classList.remove('is-shown');
-    });
-
-    const navs = document.querySelectorAll('.sidenav-active');
-    Array.prototype.forEach.call(navs, (nav) => {
-        nav.classList.remove('sidenav-active')
     });
 }
 

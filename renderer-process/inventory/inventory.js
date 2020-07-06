@@ -12,6 +12,6 @@ btnStart.addEventListener('click', () => {
     ipcRenderer.send('inventory-start', data);
 });
 
-ipcRenderer.on('res-show-inventory', (event, data) => {
+ipcRenderer.on('list-items-inventory', (event, data) => {
     btnStart.innerHTML = 'Ubah';
 });

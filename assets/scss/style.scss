@@ -36,13 +36,13 @@ label {
     @extend .text-center;
     @extend .form-inline;
     display: block;
-    margin-top: 15vh;
     label {
         margin-bottom: 2rem;
+        margin-top: 5rem;
     }
     input {
         @extend .col-1;
-        max-width: 4em;
+        max-width: 5em;
     }
 }
 
@@ -116,4 +116,50 @@ label {
     opacity: 1;
     transform: translateX(0);
     transition: visibility 0s 0s linear , opacity .36s ease-out, transform .36s ease-out;
+}
+#kpm-input-num {
+    @extend .form-inline;
+    @extend .row;
+    margin-bottom: 2rem;
+
+    input {
+        @extend .form-control;
+        max-width: 4em;
+    }
+
+    label {
+        @extend .my-auto;
+        @extend .col-sm-4;
+        justify-content: flex-end;
+    }
+}
+
+.kpm-input-form {
+    @extend .form-group;
+    @extend .row;
+    margin-bottom: 2rem;
+
+    div {
+       input {
+            @extend .form-control;
+        }
+    }
+
+    label {
+        @extend .col-sm-4;
+        @extend .my-auto;
+        text-align: right;
+    }
+}
+
+.kpm-input-split {
+    @extend .form-group;
+    @extend .row;
+    margin-bottom: 2rem;
+
+    label {
+        @extend .col-sm-4;
+        @extend .my-auto;
+        text-align: right;
+    }
 }
