@@ -23,20 +23,6 @@
                     </tr>
                 </thead>
                 <tbody id="items-list">
-                    <!-- foreach table-->
-                    <tr>
-                        <td>1</td>
-                        <td>Telur</td>
-                        <td>5 kg</td>
-                        <td>20.000</td>
-                        <td>
-                            <input type="number" />
-                        </td>
-                        <td>
-                            20.000
-                        </td>
-                    </tr>
-                    <!--end foreach-->
                     <tr>
                         <td colspan="5" class="text-right">Total Harga</td>
                         <td id="sum-of-price"></td>
@@ -49,7 +35,7 @@
             <button class="btn btn-primary float-right" id="btn-buy">Beli</button>
         </div>
         <script>
-            require("./renderer-process/main/transaction.js");
+            require("./renderer-process/main/transaction");
         </script>
     </section>
 </template>

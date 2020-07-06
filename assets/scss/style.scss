@@ -163,3 +163,15 @@ label {
         text-align: right;
     }
 }
+
+.modal-container {
+    @extend .bg-dark;
+    @extend .modal-content;
+
+    span {
+        @extend .text-white;
+    }
+    h4 {
+        @extend .text-white;
+    }
+}

@@ -22,9 +22,10 @@
     "electron-packager": "^15.0.0"
   },
   "dependencies": {
+    "bootstrap": "^4.5.0",
+    "bootstrap.native": "^3.0.9",
     "electron-settings": "^4.0.2",
     "glob": "^7.1.6",
-    "nedb": "^1.8.0",
-    "bootstrap": "^4.5.0"
+    "nedb": "^1.8.0"
   }
 }

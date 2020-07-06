@@ -5395,7 +5395,7 @@ a.close.disabled {
   display: flex;
   max-height: calc(100% - 1rem);
 }
-.modal-dialog-scrollable .modal-content {
+.modal-dialog-scrollable .modal-content, .modal-dialog-scrollable .modal-container {
   max-height: calc(100vh - 1rem);
   overflow: hidden;
 }
@@ -5423,14 +5423,14 @@ a.close.disabled {
   justify-content: center;
   height: 100%;
 }
-.modal-dialog-centered.modal-dialog-scrollable .modal-content {
+.modal-dialog-centered.modal-dialog-scrollable .modal-content, .modal-dialog-centered.modal-dialog-scrollable .modal-container {
   max-height: none;
 }
 .modal-dialog-centered.modal-dialog-scrollable::before {
   content: none;
 }
 
-.modal-content {
+.modal-content, .modal-container {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -5515,7 +5515,7 @@ a.close.disabled {
   .modal-dialog-scrollable {
     max-height: calc(100% - 3.5rem);
   }
-  .modal-dialog-scrollable .modal-content {
+  .modal-dialog-scrollable .modal-content, .modal-dialog-scrollable .modal-container {
     max-height: calc(100vh - 3.5rem);
   }
 
@@ -6106,13 +6106,15 @@ button.bg-light:focus {
   background-color: #dae0e5 !important;
 }
 
-.bg-dark {
+.bg-dark, .modal-container {
   background-color: #343a40 !important;
 }
 
-a.bg-dark:hover, a.bg-dark:focus,
+a.bg-dark:hover, a.modal-container:hover, a.bg-dark:focus, a.modal-container:focus,
 button.bg-dark:hover,
-button.bg-dark:focus {
+button.modal-container:hover,
+button.bg-dark:focus,
+button.modal-container:focus {
   background-color: #1d2124 !important;
 }
 
@@ -9729,7 +9731,7 @@ button.bg-dark:focus {
   font-style: italic !important;
 }
 
-.text-white, .main-table, label, h1 {
+.text-white, .modal-container h4, .modal-container span, .main-table, label, h1 {
   color: #fff !important;
 }
 
