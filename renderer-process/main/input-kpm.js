@@ -31,5 +31,14 @@ btnInput.addEventListener('click', () => {
         district,
     }
     ipcRenderer.send('kpm-data-input', data);
+    clearField();
     inputSection.handleInputTrigger('transaction');
 });
+
+function clearField() {
+    document.getElementById('kpm-name').value = '';
+    document.getElementById('kpm-address-dusun').value = '';
+    document.getElementById('kpm-address-rt').value = '';
+    document.getElementById('kpm-address-village').value = '';
+    document.getElementById('kpm-address-district').value = '';
+}
