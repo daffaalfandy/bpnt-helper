@@ -1,0 +1,51 @@
+<template class="task-template">
+    <section class="section" id="inventory-section">
+        <h1>Data Barang</h1>
+        <!--<form>-->
+        <div class="container">
+            <div class="main-form">
+                <label for="month-period">Bulan:</label>
+                <input list="month-list" id="month-period" class="form-control" />
+                <datalist id="month-list"></datalist>
+                <label for="year-period">Tahun:</label>
+                <input list="year-list" id="year-period" class="form-control" />
+                <datalist id="year-list"></datalist>
+                <button class="btn btn-primary" id="btn-inventory-start">Mulai</button>
+            </div>
+        </div>
+        <!-- </form> -->
+        <div class="container">
+            <table class="main-table">
+                <thead>
+                    <tr>
+                        <th>Nomor</th>
+                        <th>Nama Barang</th>
+                        <th>Stok Barang</th>
+                        <th>Harga Beli</th>
+                        <th>Harga Jual</th>
+                        <th>Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- foreach table-->
+                    <tr>
+                        <td>1</td>
+                        <td>Telur Ayam Negeri</td>
+                        <td>5 kg</td>
+                        <td>20.000</td>
+                        <td>22.000</td>
+                        <td>
+                            <button class="btn btn-info" datasection="edit">Sunting</button>
+                            <button class="btn btn-danger" datasection="remove">Hapus</button>
+                        </td>
+                    </tr>
+                    <!--end foreach-->
+                </tbody>
+            </table>
+        </div>
+
+        <script>
+            require('./renderer-process/inventory/inventory');
+        </script>
+    </section>
+</template>

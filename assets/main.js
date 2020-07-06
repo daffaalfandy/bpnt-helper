@@ -7,7 +7,7 @@ Array.prototype.forEach.call(links, (link) => {
     let clone = document.importNode(template.content, true);
     if (link.href.match('main.html')) {
         document.querySelector('#main').appendChild(clone);
-        document.querySelector('.section').classList.add('is-shown')
+        document.querySelector('.section').classList.add('is-shown');
     } else {
         document.querySelector('#main').appendChild(clone);
     }
