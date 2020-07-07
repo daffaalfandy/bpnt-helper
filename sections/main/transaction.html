@@ -23,11 +23,13 @@
                     </tr>
                 </thead>
                 <tbody id="items-list">
+                </tbody>
+                <tfoot>
                     <tr>
                         <td colspan="5" class="text-right">Total Harga</td>
                         <td id="sum-of-price"></td>
                     </tr>
-                </tbody>
+                </tfoot>
             </table>
         </div>
         <div class="container">
@@ -35,7 +37,8 @@
             <button class="btn btn-primary float-right" id="btn-buy">Beli</button>
         </div>
         <script>
-            require("./renderer-process/main/transaction");
+            const { ipcRenderer } = require('electron');
         </script>
+        <script src="./renderer-process/main/transaction.js"></script>
     </section>
 </template>

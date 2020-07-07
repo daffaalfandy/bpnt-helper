@@ -1,5 +1,3 @@
-const { ipcRenderer } = require('electron');
-
 let kksData;
 let monthYear;
 let btnBuy = document.getElementById('btn-buy');
@@ -42,15 +40,16 @@ ipcRenderer.on('list-items-transaction', (event, items) => {
             <td>${item.name}</td>
             <td>${item.quantity} ${item.unit}</td>
             <td>@Rp${item.sellPrice}</td>
-            <td><div class="def-number-input bg-light number-input text-light content-center">
-            <button onclick="kurang(this.parentNode.querySelector('input[type=number]'), ${item.sellPrice}, ${no}, '${item._id}', '${item.name}')" class="minus"></button>
+            <td>
+            <div class="def-number-input bg-light number-input text-light mx-auto">
+            <button id="btn-minus" onclick="kurang(this.parentNode.querySelector('input[type=number]'), ${item.sellPrice}, ${no}, '${item._id}', '${item.name}', this.parentNode.querySelector('#btn-minus'))" class="minus"></button>
             <input readonly class="quantity" min="0" name="quantity" value="0" type="number">
-            <button onclick="tambah(this.parentNode.querySelector('input[type=number]'), ${item.quantity}, ${item.sellPrice}, ${no}, '${item._id}', '${item.name}')" class="plus"></button>
-            </div></td>
+            <button id="btn-plus" onclick="tambah(this.parentNode.querySelector('input[type=number]'), ${item.quantity}, ${item.sellPrice}, ${no}, '${item._id}', '${item.name}', this.parentNode.querySelector('#btn-minus'))" class="plus"></button>
+            </div>
+            </td>
             <td id="${no}"></td>
             </tr>`
-            itemsData[no] =
-            {
+            itemsData[no] = {
                 id: item._id,
                 nama: item.nama,
                 sum: 0
@@ -59,38 +58,37 @@ ipcRenderer.on('list-items-transaction', (event, items) => {
         });
         itemsField.innerHTML = result;
     } else {
-        let result = `<tr><td>LIST KOSONG</td><td>LIST KOSONG</td><td>LIST KOSONG</td><td>LIST KOSONG</td><td>LIST KOSONG</td><td>LIST KOSONG</td></tr>`;
+        let result = `<tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>`;
         itemsField.innerHTML = result;
     }
 });
 
-function kurang(event, sellPrice, arrayIndex, itemId, name) {
+function kurang(event, sellPrice, arrayIndex, itemId, name, btnEvent) {
     event.stepDown();
     setPrice(Number(event.value), Number(sellPrice), arrayIndex);
     sumOfItems -= sellPrice;
-    setTotal();
-    itemsData[arrayIndex] =
-    {
+    setSum();
+    itemsData[arrayIndex] = {
         id: itemId,
         name,
         sum: Number(event.value)
     }
-
-
+    if (Number(event.value) === 0) {
+        btnEvent.disabled = true;
+    }
 }
-function tambah(event, quantity, sellPrice, arrayIndex, itemId, name) {
+function tambah(event, quantity, sellPrice, arrayIndex, itemId, name, btnMinus) {
     if (event.value < quantity) {
         event.stepUp();
         setPrice(Number(event.value), Number(sellPrice), arrayIndex);
         sumOfItems += sellPrice;
         setSum();
-        itemsData[arrayIndex] =
-        {
+        itemsData[arrayIndex] = {
             id: itemId,
             name,
             sum: Number(event.value)
         }
-
+        btnMinus.disabled = false;
     }
 }
 
@@ -122,3 +120,6 @@ btnBuy.addEventListener('click', () => {
 backBtn.addEventListener('click', () => {
     itemsField.innerHTML = '';
 });
+
+module.exports.tambah = tambah;
+module.exports.kurang = kurang;

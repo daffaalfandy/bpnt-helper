@@ -7,9 +7,12 @@ ipcMain.on('inventory-start', async (event, data) => {
 });
 
 ipcMain.on('main-start', async (event, data) => {
+    const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September',
+        'Oktober', 'November', 'Desember'];
     const { month, year } = data;
+    let newMonth = months[Number(month) - 1];
     const newData = {
-        month,
+        month: newMonth,
         year
     };
     let result = await db.searchAllItems(newData);

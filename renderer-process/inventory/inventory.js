@@ -52,12 +52,12 @@ ipcRenderer.on('list-items-inventory', (event, result, data) => {
     });
   } else {
     htmlReady += `<tr>
-    <td>LIST KOSONG</td>
-    <td>LIST KOSONG</td>
-    <td>LIST KOSONG</td>
-    <td>LIST KOSONG</td>
-    <td>LIST KOSONG</td>
-    <td>LIST KOSONG</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
+    <td>-</td>
     </tr>`
   }
   container.innerHTML = htmlReady;
