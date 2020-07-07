@@ -41,11 +41,11 @@ ipcRenderer.on('list-items-transaction', (event, items) => {
             <td>${no + 1}</td>
             <td>${item.name}</td>
             <td>${item.quantity} ${item.unit}</td>
-            <td>@Rp${item.priceTag}</td>
+            <td>@Rp${item.sellPrice}</td>
             <td><div class="def-number-input bg-light number-input text-light content-center">
-            <button onclick="kurang(this.parentNode.querySelector('input[type=number]'), ${item.priceTag}, ${no}, '${item._id}', '${item.name}')" class="minus"></button>
+            <button onclick="kurang(this.parentNode.querySelector('input[type=number]'), ${item.sellPrice}, ${no}, '${item._id}', '${item.name}')" class="minus"></button>
             <input readonly class="quantity" min="0" name="quantity" value="0" type="number">
-            <button onclick="tambah(this.parentNode.querySelector('input[type=number]'), ${item.quantity}, ${item.priceTag}, ${no}, '${item._id}', '${item.name}')" class="plus"></button>
+            <button onclick="tambah(this.parentNode.querySelector('input[type=number]'), ${item.quantity}, ${item.sellPrice}, ${no}, '${item._id}', '${item.name}')" class="plus"></button>
             </div></td>
             <td id="${no}"></td>
             </tr>`
@@ -64,10 +64,10 @@ ipcRenderer.on('list-items-transaction', (event, items) => {
     }
 });
 
-function kurang(event, priceTag, arrayIndex, itemId, name) {
+function kurang(event, sellPrice, arrayIndex, itemId, name) {
     event.stepDown();
-    setPrice(Number(event.value), Number(priceTag), arrayIndex);
-    sumOfItems -= priceTag;
+    setPrice(Number(event.value), Number(sellPrice), arrayIndex);
+    sumOfItems -= sellPrice;
     setTotal();
     itemsData[arrayIndex] =
     {
@@ -78,11 +78,11 @@ function kurang(event, priceTag, arrayIndex, itemId, name) {
 
 
 }
-function tambah(event, quantity, priceTag, arrayIndex, itemId, name) {
+function tambah(event, quantity, sellPrice, arrayIndex, itemId, name) {
     if (event.value < quantity) {
         event.stepUp();
-        setPrice(Number(event.value), Number(priceTag), arrayIndex);
-        sumOfItems += priceTag;
+        setPrice(Number(event.value), Number(sellPrice), arrayIndex);
+        sumOfItems += sellPrice;
         setSum();
         itemsData[arrayIndex] =
         {
@@ -94,10 +94,10 @@ function tambah(event, quantity, priceTag, arrayIndex, itemId, name) {
     }
 }
 
-function setPrice(sum, priceTag, arrayIndex) {
+function setPrice(sum, sellPrice, arrayIndex) {
     let priceField = document.getElementById(arrayIndex);
     priceField.innerHTML = '';
-    let result = sum * priceTag;
+    let result = sum * sellPrice;
     priceField.innerHTML = result;
 
 }

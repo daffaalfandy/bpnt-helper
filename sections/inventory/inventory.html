@@ -24,51 +24,18 @@
                         <th>Aksi</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <!-- foreach table-->
-                    <tr>
-                        <td>1</td>
-                        <td>Telur Ayam Negeri</td>
-                        <td>5 kg</td>
-                        <td>20.000</td>
-                        <td>22.000</td>
-                        <td>
-                            <button id="btn-edit-item-1" class="btn btn-info"
-                                onclick="inventoryClick.initializeModal('edit', 1)">Sunting</button>
-                            <button id="btn-delete-item-1" class="btn btn-danger"
-                                onclick="inventoryClick.initializeModal('delete', 1)">Hapus</button>
-                        </td>
-                    </tr>
-                    <!--end foreach-->
+                <tbody id="inventory-table-items">
+
                 </tbody>
             </table>
         </div>
         <div class="container">
             <div class="float-right mt-4">
-                <button id="btn-add-item" class="btn btn-primary" onclick="initializeModal('add', -1)">Tambahkan
-                    Barang</button>
+                <button id="btn-add-item" class="btn btn-primary">Tambahkan Barang</button>
             </div>
         </div>
-        <!-- start loop  -->
-        <div id="inventory-modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-container">
-                    <div class="modal-header"></div>
-                    <div class="modal-body"></div>
-                    <div class="modal-footer">
-                        <div class="float-right">
-                        </div>
-                    </div>`
-                </div>
-            </div>
-        </div>
-        <!-- <script>
-            const BSN = require('./assets/bootstrap.native.esm.min');
-        </script>
         <script>
-            const inventoryClick = require('./renderer-process/inventory/inventory');
-        </script> -->
-
-        <script src="../../renderer-process/inventory/inventory.js"></script>
+            require('./renderer-process/inventory/inventory');
+        </script>
     </section>
 </template>

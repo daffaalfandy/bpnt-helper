@@ -1,6 +1,23 @@
 const { ipcRenderer } = require('electron');
+const inputSection = require('../../assets/main');
 
 const btnStart = document.getElementById('btn-inventory-start');
+const btnAddItem = document.getElementById('btn-add-item');
+let container = document.getElementById('inventory-table-items');
+let monthYear = {};
+
+container.innerHTML = '';
+btnStart.innerHTML = 'Mulai';
+
+// Check empty object of month and year
+if (Object.keys(monthYear).length < 1) {
+  btnAddItem.disabled = true;
+}
+
+btnAddItem.addEventListener('click', () => {
+  inputSection.handleInputTrigger('input-inventory');
+  ipcRenderer.send('month-year-input-inventory', monthYear);
+});
 
 btnStart.addEventListener('click', () => {
   const month = document.getElementById('month-period').value;
@@ -9,12 +26,53 @@ btnStart.addEventListener('click', () => {
     month,
     year
   };
+  btnAddItem.disabled = false;
   ipcRenderer.send('inventory-start', data);
 });
 
-ipcRenderer.on('list-items-inventory', (event, data) => {
+ipcRenderer.on('list-items-inventory', (event, result, data) => {
+  monthYear = data;
+  let number = 1;
+  let htmlReady = '';
+  container.innerHTML = '';
+  if (result.length > 0) {
+    result.forEach(res => {
+      htmlReady += `<tr>
+      <td>${number}</td>
+      <td>${res.name}</td>
+      <td>${res.quantity} ${res.unit}</td>
+      <td>${res.buyPrice}</td>
+      <td>${res.sellPrice}</td>
+      <td>
+        <button onclick="editItem('${res._id}')" class="btn btn-info">Sunting</button>
+        <button onclick="deleteItem('${res._id}')" class="btn btn-danger">Hapus</button>
+      </td>
+      </tr>`
+      number++;
+    });
+  } else {
+    htmlReady += `<tr>
+    <td>LIST KOSONG</td>
+    <td>LIST KOSONG</td>
+    <td>LIST KOSONG</td>
+    <td>LIST KOSONG</td>
+    <td>LIST KOSONG</td>
+    <td>LIST KOSONG</td>
+    </tr>`
+  }
+  container.innerHTML = htmlReady;
   btnStart.innerHTML = 'Ubah';
 });
+
+function editItem(itemId) {
+  console.log('Edit Item');
+  ipcRenderer.send('edit-item');
+}
+
+function deleteItem(itemId) {
+  console.log('Delete Item');
+  ipcRenderer.send('delete-item');
+}
 
 function inventoryLoad() {
   const date = new Date();
@@ -39,93 +97,3 @@ function inventoryLoad() {
 }
 
 inventoryLoad();
-
-const formEdit = (state) => `<div class=container>
-<div class="form-group row">
-  <label for="item-name-${state}" class="col-sm-4 my-auto">Nama Barang</label>
-  <div class="col">
-    <input type="text" id="item-name-${state}" class="form-control" />
-  </div>
-</div>
-<div class="form-group row">
-  <label for="item-buyprice-${state}" class="col-sm-4 my-auto">Harga Beli</label>
-  <div class="col">
-    <input type="text" id="item-buy-price"-${state} class="form-control" />
-  </div>
-</div>
-<div class="form-group row">
-  <label for="item-sellprice-${state}" class="col-sm-4 my-auto">Harga Jual</label>
-  <div class="col">
-    <input type="text" id="item-sellprice-${state}" class="form-control" />
-  </div>
-</div>
-<div class="form-group row">
-<label for="item-qty-${state}" class="col-sm-4 my-auto">Banyak Barang</label>
-<div class="col-sm-4">
-  <input type="text" id="item-qty-${state}" class="form-control" />
-</div>
-</div>`;
-
-const btnCloseModal = `<button type="button" class="close" data-dismiss="modal" aria-label="Tutup">
-<span aria-hidden-"true">&times;</span>
-</button>`;
-
-
-function initializeModal(action, id) {
-  const modal = new BSN.Modal(document.getElementById("inventory-modal"));
-  modal.show();
-  showModalContent(action, id)
-}
-
-function showModalContent(action, id) {
-  switch (action) {
-    case "add":
-      setModalHeader("Tambah");
-      setModalBodyAdd();
-      setModalButtonAdd();
-      break;
-    case "edit":
-      setModalHeader("Sunting");
-      setModalBodyEdit(id);
-      setModalButtonEdit(action, id);
-      break;
-    case "delete":
-      setModalHeader("Hapus");
-      setModalBodyDelete();
-      setModalButtonDelete(id);
-      break;
-  }
-}
-
-function setModalHeader(title) {
-  document.querySelector("#inventory-modal .modal-header").innerHTML = `<h4 class="modal-title">${title} Barang</h4> ${btnCloseModal}`;
-}
-
-function setModalBodyEdit(id) {
-  document.querySelector("#inventory-modal .modal-body").innerHTML = formEdit("edit-" + id);
-}
-
-function setModalBodyAdd() {
-  document.querySelector("#inventory-modal .modal-body").innerHTML = formEdit("add");
-}
-
-function setModalBodyDelete() {
-  document.querySelector("#inventory-modal .modal-body").innerHTML = "<p class='text-white'>Yakin untuk menghapus?</p>";
-}
-
-function setModalButtonDelete(id) {
-  document.querySelector("#inventory-modal .modal-footer .float-right").innerHTML = `<button class="btn btn-danger" data-dismiss="modal">Tidak</button>
-            <button class="btn btn-primary" id="btn-confirm-delete-${id}">Ya</button>`;
-}
-
-function setModalButtonEdit(id) {
-  document.querySelector("#inventory-modal .modal-footer .float-right").innerHTML = `<button class="btn btn-danger" data-dismiss="modal">Batal</button>
-  <button class="btn btn-primary" id="btn-confirm-edit-${id}">Simpan</button>`;
-}
-
-function setModalButtonAdd() {
-  document.querySelector("#inventory-modal .modal-footer .float-right").innerHTML = `<button class="btn btn-danger" data-dismiss="modal">Batal</button>
-  <button class="btn btn-primary" id="btn-confirm-add">Simpan</button>`;
-}
-
-module.exports.initializeModal = initializeModal;

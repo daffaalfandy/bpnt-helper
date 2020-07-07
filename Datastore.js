@@ -28,9 +28,9 @@ async function searchOneKPM(key, value) {
     return new Promise((res, rej) => {
         db.kpmData.findOne({ [key]: value }, (err, data) => {
             if (data == null) {
-                res(false)
+                res(false);
             } else {
-                res(data)
+                res(data);
             }
         })
     })
@@ -47,6 +47,11 @@ async function searchAllItems(data) {
     });
 };
 
+function insertItem(data) {
+    db.itemsData.insert(data);
+}
+
 module.exports.insertOneKPM = insertOneKPM;
 module.exports.searchOneKPM = searchOneKPM;
 module.exports.searchAllItems = searchAllItems;
+module.exports.insertItem = insertItem;
