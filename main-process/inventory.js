@@ -23,10 +23,9 @@ ipcMain.on('main-start', async (event, data) => {
 });
 
 ipcMain.on('after-delete', async (event) => {
-    console.log('after delete')
     let result = await db.searchAllItems(monthYear);
     event.sender.send('list-items-inventory', result);
-})
+});
 
 ipcMain.on('inventory-add-item', async (event, data) => {
     db.insertItem(data);
@@ -37,14 +36,17 @@ ipcMain.on('month-year-input-inventory', async (event, data) => {
 });
 
 ipcMain.on('edit-item', async (event, id) => {
-    let data = {
-        _id: id
-    }
-    let result = await db.searchItem(data);
+    let result = await db.searchItem({ _id: id });
     event.sender.send('res-edit-item', result);
 });
 
 ipcMain.on('delete-item', async (event, id) => {
     db.deleteItem({ _id: id });
     event.sender.send('items-deleted');
+});
+
+ipcMain.on('inventory-edit-item', async (event, data, itemId) => {
+    db.updateItem(itemId, data);
+    let result = await db.searchAllItems(monthYear);
+    event.sender.send('list-items-inventory', result);
 });

@@ -1,0 +1,4 @@
+{"name":"Test","buyPrice":2000,"sellPrice":2500,"quantity":9,"sumOfQuantity":15,"unit":"Kg","month":"Juli","year":"2020","_id":"GVkznkzEEqfCAX2t","createdAt":{"$$date":1595073324266},"updatedAt":{"$$date":1595074502730}}
+{"name":"Testtttt","buyPrice":2000,"sellPrice":2500,"quantity":9,"sumOfQuantity":15,"unit":"Kg","_id":"GVkznkzEEqfCAX2t","createdAt":{"$$date":1595073324266},"updatedAt":{"$$date":1595078209485}}
+{"name":"Testtttt","buyPrice":2000,"sellPrice":2500,"quantity":50,"sumOfQuantity":56,"unit":"Kg","_id":"GVkznkzEEqfCAX2t","createdAt":{"$$date":1595073324266},"updatedAt":{"$$date":1595078236546}}
+{"name":"Testttttii","buyPrice":200,"sellPrice":250,"quantity":50,"sumOfQuantity":56,"unit":"pcs","_id":"GVkznkzEEqfCAX2t","createdAt":{"$$date":1595073324266},"updatedAt":{"$$date":1595078255329}}

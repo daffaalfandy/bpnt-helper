@@ -72,9 +72,7 @@ function insertItem(data) {
 }
 
 function updateItem(itemId, data) {
-    db.itemsData.update({ _id: itemId }, { $set: data }, {}, function (err, numReplaced) {
-        console.log(numReplaced);
-    })
+    db.itemsData.update({ _id: itemId }, { $set: data }, {}, function (err, numReplaced) { })
 }
 
 // Transaction Function

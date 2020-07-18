@@ -73,7 +73,7 @@ ipcRenderer.on('list-items-inventory', (event, result, data) => {
 
 container.addEventListener('click', (e) => {
   if (e.target.id == 'btn-edit') {
-    console.log('edit');
+    editItem(e.target.dataset.id);
   } else if (e.target.id == 'btn-delete') {
     deleteItem(e.target.dataset.id);
   }
@@ -81,6 +81,11 @@ container.addEventListener('click', (e) => {
 
 function deleteItem(itemId) {
   ipcRenderer.send('delete-item', itemId);
+}
+
+function editItem(itemId) {
+  ipcRenderer.send('edit-item', itemId);
+  inputSection.handleInputTrigger('input-inventory');
 }
 
 function inventoryLoad() {
