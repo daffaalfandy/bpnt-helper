@@ -1,4 +1,5 @@
 const { ipcRenderer } = require('electron');
+const inputSection = require('../../assets/main');
 
 let kksData;
 let dateTimeData;
@@ -125,6 +126,8 @@ btnBuy.addEventListener('click', () => {
     ipcRenderer.send('transaction-data', data);
 
     clearField();
+
+    inputSection.handleInputTrigger('main');
 });
 
 backBtn.addEventListener('click', () => {

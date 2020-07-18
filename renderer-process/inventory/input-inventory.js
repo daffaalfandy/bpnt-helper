@@ -25,6 +25,7 @@ btnSimpan.addEventListener('click', () => {
         buyPrice,
         sellPrice,
         quantity,
+        sumOfQuantity: quantity,
         unit,
         month,
         year

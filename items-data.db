@@ -1,2 +1,4 @@
-{"name":"Test Barang","buyPrice":20000,"sellPrice":25000,"quantity":10,"unit":"Kg","month":"Juli","year":"2020","_id":"e29onyixg4horg85","createdAt":{"$$date":1595071319653},"updatedAt":{"$$date":1595071319653}}
-{"name":"Test Barang 2","buyPrice":10000,"sellPrice":15000,"quantity":5,"unit":"Kg","month":"Juli","year":"2020","_id":"k39wSv6z5sfb7Oj9","createdAt":{"$$date":1595071330432},"updatedAt":{"$$date":1595071330432}}
+{"name":"Test Barang","buyPrice":20000,"sellPrice":25000,"quantity":8,"unit":"Kg","month":"Juli","year":"2020","_id":"e29onyixg4horg85","createdAt":{"$$date":1595071319653},"updatedAt":{"$$date":1595071460082}}
+{"name":"Test Barang 2","buyPrice":10000,"sellPrice":15000,"quantity":2,"unit":"Kg","month":"Juli","year":"2020","_id":"k39wSv6z5sfb7Oj9","createdAt":{"$$date":1595071330432},"updatedAt":{"$$date":1595071460062}}
+{"name":"Test Barang 2","buyPrice":10000,"sellPrice":15000,"quantity":0,"unit":"Kg","month":"Juli","year":"2020","_id":"k39wSv6z5sfb7Oj9","createdAt":{"$$date":1595071330432},"updatedAt":{"$$date":1595071816595}}
+{"name":"Test Barang","buyPrice":20000,"sellPrice":25000,"quantity":0,"unit":"Kg","month":"Juli","year":"2020","_id":"e29onyixg4horg85","createdAt":{"$$date":1595071319653},"updatedAt":{"$$date":1595071816612}}
