@@ -45,9 +45,6 @@ ipcMain.on('edit-item', async (event, id) => {
 });
 
 ipcMain.on('delete-item', async (event, id) => {
-    let data = {
-        _id: id
-    }
-    db.deleteItem(data);
+    db.deleteItem({ _id: id });
     event.sender.send('items-deleted');
 });

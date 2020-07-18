@@ -1,6 +1,8 @@
 const { ipcRenderer } = require('electron');
 const inputSection = require('../../assets/main');
 
+inventoryLoad();
+
 const btnStart = document.getElementById('btn-inventory-start');
 const btnAddItem = document.getElementById('btn-add-item');
 let container = document.getElementById('inventory-table-items');
@@ -49,8 +51,8 @@ ipcRenderer.on('list-items-inventory', (event, result, data) => {
       <td>${res.buyPrice}</td>
       <td>${res.sellPrice}</td>
       <td>
-        <button onclick="editItem('${res._id}')" class="btn btn-info">Sunting</button>
-        <button onclick="deleteItem('${res._id}')" class="btn btn-danger">Hapus</button>
+        <button data-id="${res._id}" id="btn-edit" class="btn btn-info">Sunting</button>
+        <button data-id="${res._id}" id="btn-delete" class="btn btn-danger">Hapus</button>
       </td>
       </tr>`
       number++;
@@ -68,6 +70,18 @@ ipcRenderer.on('list-items-inventory', (event, result, data) => {
   container.innerHTML = htmlReady;
   btnStart.innerHTML = 'Ubah';
 });
+
+container.addEventListener('click', (e) => {
+  if (e.target.id == 'btn-edit') {
+    console.log('edit');
+  } else if (e.target.id == 'btn-delete') {
+    deleteItem(e.target.dataset.id);
+  }
+});
+
+function deleteItem(itemId) {
+  ipcRenderer.send('delete-item', itemId);
+}
 
 function inventoryLoad() {
   const date = new Date();
@@ -90,5 +104,3 @@ function inventoryLoad() {
     monthsElement.appendChild(option);
   });
 }
-
-inventoryLoad();
