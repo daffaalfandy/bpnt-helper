@@ -19,6 +19,8 @@ db.transactionData = new Datastore({
     timestampData: true
 });
 
+// KPM Function
+
 function insertOneKPM(data) {
     db.kpmData.insert(data, (err, newDoc) => {
     });
@@ -35,6 +37,8 @@ async function searchOneKPM(key, value) {
         })
     })
 }
+
+// Data Function
 
 async function searchAllItems(data) {
     return new Promise((res, rej) => {
@@ -67,9 +71,23 @@ function insertItem(data) {
     db.itemsData.insert(data);
 }
 
+function updateItem(itemId, data) {
+    db.itemsData.update({ _id: itemId }, { $set: data }, {}, function (err, numReplaced) {
+        console.log(numReplaced);
+    })
+}
+
+// Transaction Function
+
+function insertTransaction(data) {
+    db.transactionData.insert(data);
+}
+
 module.exports.insertOneKPM = insertOneKPM;
 module.exports.searchOneKPM = searchOneKPM;
 module.exports.searchAllItems = searchAllItems;
 module.exports.insertItem = insertItem;
 module.exports.searchItem = searchItem;
 module.exports.deleteItem = deleteItem;
+module.exports.insertTransaction = insertTransaction;
+module.exports.updateItem = updateItem;

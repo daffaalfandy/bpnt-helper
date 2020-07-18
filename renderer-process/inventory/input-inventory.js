@@ -16,9 +16,9 @@ btnCancel.addEventListener('click', () => {
 btnSimpan.addEventListener('click', () => {
     const { month, year } = date;
     let name = document.getElementById('item-name').value;
-    let buyPrice = document.getElementById('item-buyprice').value;
-    let sellPrice = document.getElementById('item-sellprice').value;
-    let quantity = document.getElementById('item-qty').value;
+    let buyPrice = Number(document.getElementById('item-buyprice').value);
+    let sellPrice = Number(document.getElementById('item-sellprice').value);
+    let quantity = Number(document.getElementById('item-qty').value);
     let unit = document.getElementById('item-unit').value;
     let data = {
         name,

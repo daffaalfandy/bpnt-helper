@@ -27,3 +27,15 @@ ipcMain.on('kpm-data-input', async (event, data) => {
     db.insertOneKPM(data);
     event.sender.send('res-kpm-data', data);
 });
+
+ipcMain.on('transaction-data', async (event, data) => {
+    let { kks, items, dateTimeData } = data;
+    for (var i = 0; i < items.length; i++) {
+        let itemData = await db.searchItem({ _id: `${items[i].itemId}` });
+        let prevQuantity = itemData.quantity;
+        let quantity = Number(prevQuantity) - Number(items[i].quantity)
+        db.updateItem(itemData._id, { quantity });
+    }
+    // db.insertTransaction(data);
+    const { month, year } = dateTimeData;
+})

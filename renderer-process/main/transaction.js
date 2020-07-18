@@ -1,7 +1,7 @@
 const { ipcRenderer } = require('electron');
 
 let kksData;
-let monthYear;
+let dateTimeData;
 let btnBuy = document.getElementById('btn-buy');
 let backBtn = document.getElementById('back-btn-transaction');
 let kksField = document.getElementById('kks-field');
@@ -22,10 +22,7 @@ ipcRenderer.on('res-kpm-data', (event, result) => {
 // Receive date
 ipcRenderer.on('res-transaction-date', (event, result) => {
     const { date, month, year } = result;
-    monthYear = {
-        month,
-        year
-    };
+    dateTimeData = result;
     const datetime = `${year}-${month}-${date}`
     document.getElementById('datepick-goal').value = datetime;
 });
@@ -122,7 +119,8 @@ btnBuy.addEventListener('click', () => {
     }
     let data = {
         kks: kksData,
-        items
+        items,
+        dateTimeData
     };
     ipcRenderer.send('transaction-data', data);
 
