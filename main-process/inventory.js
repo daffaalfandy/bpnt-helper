@@ -1,6 +1,8 @@
 const { ipcMain } = require('electron');
 const db = require('../Datastore');
 
+let monthYear = {};
+
 ipcMain.on('inventory-start', async (event, data) => {
     let listItems = await db.searchAllItems(data);
     event.sender.send('list-items-inventory', listItems, data);
@@ -15,9 +17,16 @@ ipcMain.on('main-start', async (event, data) => {
         month: newMonth,
         year
     };
+    monthYear = newData;
     let result = await db.searchAllItems(newData);
     event.sender.send('list-items-transaction', result);
 });
+
+ipcMain.on('after-delete', async (event) => {
+    console.log('after delete')
+    let result = await db.searchAllItems(monthYear);
+    event.sender.send('list-items-inventory', result);
+})
 
 ipcMain.on('inventory-add-item', async (event, data) => {
     db.insertItem(data);
@@ -25,4 +34,20 @@ ipcMain.on('inventory-add-item', async (event, data) => {
 
 ipcMain.on('month-year-input-inventory', async (event, data) => {
     event.sender.send('res-month-year-input-inventory', data);
-})
+});
+
+ipcMain.on('edit-item', async (event, id) => {
+    let data = {
+        _id: id
+    }
+    let result = await db.searchItem(data);
+    event.sender.send('res-edit-item', result);
+});
+
+ipcMain.on('delete-item', async (event, id) => {
+    let data = {
+        _id: id
+    }
+    db.deleteItem(data);
+    event.sender.send('items-deleted');
+});

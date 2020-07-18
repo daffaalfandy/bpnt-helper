@@ -37,8 +37,8 @@
             <button class="btn btn-primary float-right" id="btn-buy">Beli</button>
         </div>
         <script>
-            const { ipcRenderer } = require('electron');
+            require('./renderer-process/main/transaction');
         </script>
-        <script src="./renderer-process/main/transaction.js"></script>
+        <!-- <script src="./renderer-process/main/transaction.js"></script> -->
     </section>
 </template>

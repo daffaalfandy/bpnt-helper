@@ -30,6 +30,11 @@ btnStart.addEventListener('click', () => {
   ipcRenderer.send('inventory-start', data);
 });
 
+ipcRenderer.on('items-deleted', () => {
+  ipcRenderer.send('after-delete');
+  inputSection.handleInputTrigger('inventory');
+});
+
 ipcRenderer.on('list-items-inventory', (event, result, data) => {
   monthYear = data;
   let number = 1;
@@ -63,16 +68,6 @@ ipcRenderer.on('list-items-inventory', (event, result, data) => {
   container.innerHTML = htmlReady;
   btnStart.innerHTML = 'Ubah';
 });
-
-function editItem(itemId) {
-  console.log('Edit Item');
-  ipcRenderer.send('edit-item');
-}
-
-function deleteItem(itemId) {
-  console.log('Delete Item');
-  ipcRenderer.send('delete-item');
-}
 
 function inventoryLoad() {
   const date = new Date();

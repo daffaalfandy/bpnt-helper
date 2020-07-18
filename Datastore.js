@@ -47,6 +47,22 @@ async function searchAllItems(data) {
     });
 };
 
+async function searchItem(itemId) {
+    return new Promise((res, rej) => {
+        db.itemsData.findOne(itemId, (err, doc) => {
+            res(doc);
+        });
+    });
+}
+
+async function deleteItem(itemId) {
+    return new Promise((res, rej) => {
+        db.itemsData.remove(itemId, (err) => {
+            res(true);
+        })
+    })
+}
+
 function insertItem(data) {
     db.itemsData.insert(data);
 }
@@ -55,3 +71,5 @@ module.exports.insertOneKPM = insertOneKPM;
 module.exports.searchOneKPM = searchOneKPM;
 module.exports.searchAllItems = searchAllItems;
 module.exports.insertItem = insertItem;
+module.exports.searchItem = searchItem;
+module.exports.deleteItem = deleteItem;

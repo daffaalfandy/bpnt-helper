@@ -1,3 +1,5 @@
+const { ipcRenderer } = require('electron');
+
 let kksData;
 let monthYear;
 let btnBuy = document.getElementById('btn-buy');
@@ -5,6 +7,7 @@ let backBtn = document.getElementById('back-btn-transaction');
 let kksField = document.getElementById('kks-field');
 let nameField = document.getElementById('name-field');
 let itemsField = document.getElementById('items-list');
+let sumOfAllField = document.getElementById('sum-of-price');
 let itemsData = [];
 let sumOfItems = 0;
 
@@ -39,15 +42,15 @@ ipcRenderer.on('list-items-transaction', (event, items) => {
             <td>${no + 1}</td>
             <td>${item.name}</td>
             <td>${item.quantity} ${item.unit}</td>
-            <td>@Rp${item.sellPrice}</td>
+            <td>@ Rp${item.sellPrice}</td>
             <td>
-            <div class="def-number-input bg-light number-input text-light mx-auto">
-            <button id="btn-minus" onclick="kurang(this.parentNode.querySelector('input[type=number]'), ${item.sellPrice}, ${no}, '${item._id}', '${item.name}', this.parentNode.querySelector('#btn-minus'))" class="minus"></button>
+            <div id="${item._id}" data-id="${item._id}" data-quantity="${item.quantity}" class="def-number-input bg-light number-input text-light mx-auto">
+            <button id="btn-minus" class="minus"></button>
             <input readonly class="quantity" min="0" name="quantity" value="0" type="number">
-            <button id="btn-plus" onclick="tambah(this.parentNode.querySelector('input[type=number]'), ${item.quantity}, ${item.sellPrice}, ${no}, '${item._id}', '${item.name}', this.parentNode.querySelector('#btn-minus'))" class="plus"></button>
+            <button id="btn-plus" class="plus"></button>
             </div>
             </td>
-            <td id="${no}"></td>
+            <td id="price-field" data-sellprice="${item.sellPrice}"></td>
             </tr>`
             itemsData[no] = {
                 id: item._id,
@@ -63,49 +66,50 @@ ipcRenderer.on('list-items-transaction', (event, items) => {
     }
 });
 
-function kurang(event, sellPrice, arrayIndex, itemId, name, btnEvent) {
-    event.stepDown();
-    setPrice(Number(event.value), Number(sellPrice), arrayIndex);
-    sumOfItems -= sellPrice;
-    setSum();
-    itemsData[arrayIndex] = {
-        id: itemId,
-        name,
-        sum: Number(event.value)
-    }
-    if (Number(event.value) === 0) {
-        btnEvent.disabled = true;
-    }
-}
-function tambah(event, quantity, sellPrice, arrayIndex, itemId, name, btnMinus) {
-    if (event.value < quantity) {
-        event.stepUp();
-        setPrice(Number(event.value), Number(sellPrice), arrayIndex);
-        sumOfItems += sellPrice;
-        setSum();
-        itemsData[arrayIndex] = {
-            id: itemId,
-            name,
-            sum: Number(event.value)
+itemsField.addEventListener('click', function (e) {
+    if (e.target.nodeName == 'BUTTON') {
+        if (e.target.id == 'btn-plus') {
+            let node = e.target.parentNode;
+            addItem(node);
+        } else if (e.target.id == 'btn-minus') {
+            let node = e.target.parentNode;
+            lessItem(node);
         }
-        btnMinus.disabled = false;
+    }
+});
+
+function addItem(parentEvent) {
+    let valueInput = parentEvent.querySelector('input[type=number]');
+    if (valueInput.value < Number(parentEvent.dataset.quantity)) {
+        valueInput.stepUp();
+        let value = Number(valueInput.value);
+        setSumOfPrice(parentEvent, value, 'plus');
     }
 }
 
-function setPrice(sum, sellPrice, arrayIndex) {
-    let priceField = document.getElementById(arrayIndex);
-    priceField.innerHTML = '';
-    let result = sum * sellPrice;
-    priceField.innerHTML = result;
-
+function lessItem(parentEvent) {
+    let valueInput = parentEvent.querySelector('input[type=number]');
+    valueInput.stepDown();
+    let value = Number(valueInput.value);
+    setSumOfPrice(parentEvent, value, 'minus');
 }
 
-function setSum() {
-    let sumOfPrice = document.getElementById('sum-of-price');
-    if (sumOfItems < 0) {
-        sumOfItems = 0;
+function setSumOfPrice(parentEvent, value, action) {
+    let priceField = parentEvent.parentNode.parentNode.querySelector('#price-field');
+    let sellPrice = Number(priceField.dataset.sellprice);
+    let sumOfPrice = sellPrice * value;
+    priceField.innerHTML = `Rp${sumOfPrice}`;
+    if (sumOfAllField.innerHTML == '' || sumOfAllField.innerHTML == 'Rp0') {
+        sumOfAllField.innerHTML = `Rp${sumOfPrice}`
+    } else {
+        let sumOfAll = Number(sumOfAllField.innerHTML.substring(2));
+        if (action == 'plus') {
+            sumOfAll += sellPrice;
+        } else if (action == 'minus') {
+            sumOfAll -= sellPrice;
+        }
+        sumOfAllField.innerHTML = `Rp${sumOfAll}`;
     }
-    sumOfPrice.innerHTML = sumOfItems;
 }
 
 btnBuy.addEventListener('click', () => {
@@ -120,6 +124,3 @@ btnBuy.addEventListener('click', () => {
 backBtn.addEventListener('click', () => {
     itemsField.innerHTML = '';
 });
-
-module.exports.tambah = tambah;
-module.exports.kurang = kurang;

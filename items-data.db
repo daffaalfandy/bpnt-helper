@@ -1,2 +1,2 @@
-{"name":"Gula Aren","buyPrice":"15000","sellPrice":"20000","quantity":"100","unit":"Pcs","month":"Juli","year":"2020","_id":"H29WJiBbBkUgWnx2","createdAt":{"$$date":1594097679110},"updatedAt":{"$$date":1594097679110}}
-{"name":"Gula pasir ","buyPrice":"20000","sellPrice":"25000","quantity":"50","unit":"KG","month":"Juli","year":"2020","_id":"puQtlMlXLKrOAewX","createdAt":{"$$date":1594097568814},"updatedAt":{"$$date":1594097568814}}
+{"name":"Test 1","buyPrice":"20000","sellPrice":"25000","quantity":"10","unit":"kg","month":"Juli","year":"2020","_id":"5L76jH3H5UAczsnh","createdAt":{"$$date":1595049971142},"updatedAt":{"$$date":1595049971142}}
+{"name":"Test 2","buyPrice":"10000","sellPrice":"15000","quantity":"5","unit":"pcs","month":"Juli","year":"2020","_id":"XjEj2RmfiLFu3PAG","createdAt":{"$$date":1595049985876},"updatedAt":{"$$date":1595049985876}}
