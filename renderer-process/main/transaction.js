@@ -8,8 +8,7 @@ let kksField = document.getElementById('kks-field');
 let nameField = document.getElementById('name-field');
 let itemsField = document.getElementById('items-list');
 let sumOfAllField = document.getElementById('sum-of-price');
-let itemsData = [];
-let sumOfItems = 0;
+let numberOfItems = 0;
 
 // Receive kpm data
 ipcRenderer.on('res-kpm-data', (event, result) => {
@@ -36,28 +35,22 @@ ipcRenderer.on('list-items-transaction', (event, items) => {
     itemsField.innerHTML = '';
     if (items.length > 0) {
         let result = '';
-        let no = 0;
         items.forEach(item => {
             result += `<tr>
-            <td>${no + 1}</td>
+            <td>${numberOfItems + 1}</td>
             <td>${item.name}</td>
             <td>${item.quantity} ${item.unit}</td>
             <td>@ Rp${item.sellPrice}</td>
             <td>
-            <div id="${item._id}" data-id="${item._id}" data-quantity="${item.quantity}" class="def-number-input bg-light number-input text-light mx-auto">
+            <div id="${item._id}" data-quantity="${item.quantity}" class="def-number-input bg-light number-input text-light mx-auto">
             <button id="btn-minus" class="minus"></button>
             <input readonly class="quantity" min="0" name="quantity" value="0" type="number">
             <button id="btn-plus" class="plus"></button>
             </div>
             </td>
-            <td id="price-field" data-sellprice="${item.sellPrice}"></td>
+            <td data-id="${item._id}" id="price-field" data-sellprice="${item.sellPrice}"></td>
             </tr>`
-            itemsData[no] = {
-                id: item._id,
-                nama: item.nama,
-                sum: 0
-            }
-            no++;
+            numberOfItems++;
         });
         itemsField.innerHTML = result;
     } else {
@@ -89,9 +82,11 @@ function addItem(parentEvent) {
 
 function lessItem(parentEvent) {
     let valueInput = parentEvent.querySelector('input[type=number]');
-    valueInput.stepDown();
-    let value = Number(valueInput.value);
-    setSumOfPrice(parentEvent, value, 'minus');
+    if (valueInput.value != 0) {
+        valueInput.stepDown();
+        let value = Number(valueInput.value);
+        setSumOfPrice(parentEvent, value, 'minus');
+    }
 }
 
 function setSumOfPrice(parentEvent, value, action) {
@@ -113,14 +108,34 @@ function setSumOfPrice(parentEvent, value, action) {
 }
 
 btnBuy.addEventListener('click', () => {
-    itemsField.innerHTML = '';
-    document.getElementById('sum-of-price').innerHTML = '';
-    itemsData.kks = kksData;
-    ipcRenderer.send('transaction', itemsData, monthYear, sumOfItems);
-    itemsData = [];
-    sumOfItems = 0;
+    let sumNodes = document.querySelectorAll('#price-field');
+    let items = [];
+    for (var i = 0; i < sumNodes.length; i++) {
+        if (sumNodes[i].innerHTML == '' || sumNodes[i].innerHTML == 'Rp0') {
+            continue;
+        } else {
+            items.push({
+                itemId: sumNodes[i].dataset.id,
+                quantity: sumNodes[i].parentNode.querySelector('input[type=number]').value
+            });
+        }
+    }
+    let data = {
+        kks: kksData,
+        items
+    };
+    ipcRenderer.send('transaction-data', data);
+
+    clearField();
 });
 
 backBtn.addEventListener('click', () => {
-    itemsField.innerHTML = '';
+    clearField();
 });
+
+function clearField() {
+    itemsField.innerHTML = '';
+    sumOfAllField.innerHTML = '';
+    kksData = '';
+    numberOfItems = 0;
+}
