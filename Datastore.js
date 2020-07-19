@@ -62,7 +62,7 @@ async function searchItem(itemId) {
 async function deleteItem(itemId) {
     return new Promise((res, rej) => {
         db.itemsData.remove(itemId, (err) => {
-            res(true);
+            db.itemsData.persistence.compactDatafile();
         })
     })
 }
@@ -72,7 +72,9 @@ function insertItem(data) {
 }
 
 function updateItem(itemId, data) {
-    db.itemsData.update({ _id: itemId }, { $set: data }, {}, function (err, numReplaced) { })
+    db.itemsData.update({ _id: itemId }, { $set: data }, {}, function (err, numReplaced) {
+        db.itemsData.persistence.compactDatafile();
+    })
 }
 
 // Transaction Function

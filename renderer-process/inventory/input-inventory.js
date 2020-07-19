@@ -32,35 +32,57 @@ ipcRenderer.on('res-edit-item', (event, data) => {
     sumOfQuantity = data.sumOfQuantity;
     itemId = data._id;
     isEdit = true;
+    date.month = data.month;
+    date.year = data.year;
 });
 
 btnSimpan.addEventListener('click', () => {
-    const { month, year } = date;
+    let { month, year } = date;
     let name = nameField.value;
     let buyPrice = Number(buyPriceField.value);
     let sellPrice = Number(sellPriceField.value);
     let quantity = Number(quantityField.value);
     let unit = unitField.value;
-    let data = {
-        name,
-        buyPrice,
-        sellPrice,
-        quantity,
-        sumOfQuantity: quantity,
-        unit,
-        month,
-        year
-    };
 
     if (!isEdit) {
-
+        let data = {
+            name,
+            buyPrice,
+            sellPrice,
+            quantity,
+            sumOfQuantity: quantity,
+            unit,
+            month,
+            year
+        };
         ipcRenderer.send('inventory-add-item', data);
     } else {
         let temp = quantity - tempQty
         sumOfQuantity += temp;
-        data.sumOfQuantity = sumOfQuantity;
+        let data = {
+            name,
+            buyPrice,
+            sellPrice,
+            quantity,
+            sumOfQuantity: sumOfQuantity,
+            unit,
+        };
         ipcRenderer.send('inventory-edit-item', data, itemId);
     }
     ipcRenderer.send('inventory-start', date);
+    clearField();
     inputSection.handleInputTrigger('inventory');
 });
+
+function clearField() {
+    nameField.value = '';
+    buyPriceField.value = '';
+    sellPriceField.value = '';
+    quantityField.value = '';
+    unitField.value = '';
+    date = {};
+    tempQty = 0;
+    sumOfQuantity = 0;
+    itemId = '';
+    isEdit = false;
+}

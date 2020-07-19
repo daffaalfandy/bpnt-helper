@@ -6,6 +6,7 @@ let monthYear = {};
 ipcMain.on('inventory-start', async (event, data) => {
     let listItems = await db.searchAllItems(data);
     event.sender.send('list-items-inventory', listItems, data);
+    monthYear = data;
 });
 
 ipcMain.on('main-start', async (event, data) => {
@@ -17,14 +18,13 @@ ipcMain.on('main-start', async (event, data) => {
         month: newMonth,
         year
     };
-    monthYear = newData;
     let result = await db.searchAllItems(newData);
     event.sender.send('list-items-transaction', result);
 });
 
 ipcMain.on('after-delete', async (event) => {
     let result = await db.searchAllItems(monthYear);
-    event.sender.send('list-items-inventory', result);
+    event.sender.send('list-items-inventory', result, monthYear);
 });
 
 ipcMain.on('inventory-add-item', async (event, data) => {
@@ -48,5 +48,5 @@ ipcMain.on('delete-item', async (event, id) => {
 ipcMain.on('inventory-edit-item', async (event, data, itemId) => {
     db.updateItem(itemId, data);
     let result = await db.searchAllItems(monthYear);
-    event.sender.send('list-items-inventory', result);
+    event.sender.send('list-items-inventory', result, monthYear);
 });

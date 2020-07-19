@@ -22,12 +22,13 @@ btnAddItem.addEventListener('click', () => {
 });
 
 btnStart.addEventListener('click', () => {
-  const month = document.getElementById('month-period').value;
-  const year = document.getElementById('year-period').value;
-  const data = {
+  let month = document.getElementById('month-period').value;
+  let year = document.getElementById('year-period').value;
+  let data = {
     month,
     year
   };
+  monthYear = data;
   btnAddItem.disabled = false;
   ipcRenderer.send('inventory-start', data);
 });
