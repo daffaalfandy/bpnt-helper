@@ -9,12 +9,14 @@ let kksField = document.getElementById('kks-field');
 let nameField = document.getElementById('name-field');
 let itemsField = document.getElementById('items-list');
 let sumOfAllField = document.getElementById('sum-of-price');
+let kpmName;
 let numberOfItems = 0;
 
 // Receive kpm data
 ipcRenderer.on('res-kpm-data', (event, result) => {
     const { kks, name } = result;
     kksData = kks;
+    kpmName = name;
     const kksNum = kks.match(/.{1,4}/g);
     kksField.innerHTML = `No. KKS: ${kksNum[0]}-${kksNum[1]}-${kksNum[2]}-${kksNum[3]}`;
     nameField.innerHTML = `Nama KPM: ${name}`;
@@ -120,6 +122,7 @@ btnBuy.addEventListener('click', () => {
     }
     let data = {
         kks: kksData,
+        name: kpmName,
         items,
         dateTimeData
     };
@@ -139,4 +142,5 @@ function clearField() {
     sumOfAllField.innerHTML = '';
     kksData = '';
     numberOfItems = 0;
+    kpmName = '';
 }

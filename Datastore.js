@@ -44,7 +44,7 @@ async function searchAllItems(data) {
     return new Promise((res, rej) => {
         db.itemsData
             .find(data)
-            .sort({ updatedAt: -1 })
+            .sort({ createdAt: -1 })
             .exec((err, doc) => {
                 res(doc);
             });
@@ -83,6 +83,17 @@ function insertTransaction(data) {
     db.transactionData.insert(data);
 }
 
+async function searchTransaction(data) {
+    return new Promise((res, rej) => {
+        db.transactionData
+            .find(data)
+            .sort({ createdAt: -1 })
+            .exec((err, doc) => {
+                res(doc);
+            });
+    });
+}
+
 module.exports.insertOneKPM = insertOneKPM;
 module.exports.searchOneKPM = searchOneKPM;
 module.exports.searchAllItems = searchAllItems;
@@ -91,3 +102,4 @@ module.exports.searchItem = searchItem;
 module.exports.deleteItem = deleteItem;
 module.exports.insertTransaction = insertTransaction;
 module.exports.updateItem = updateItem;
+module.exports.searchTransaction = searchTransaction;

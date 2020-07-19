@@ -1,0 +1,31 @@
+<template class="task-template">
+    <section class="section" id="show-history-section">
+        <div class="container pt-5">
+            <h1 class="mb-2">Riwayat Transaksi</h1>
+            <h5 class="text-white text-center mb-4" id="show-date-history">15 Arpil 2020</h5>
+            <div class="container">
+                <div class="main-form text-center">
+                    <label for="kpm-search" class="text-white text-center">Cari KPM: </label>
+                    <input type="text" class="form-control" id="kpm-search" placeholder="8 digit terakhir kks">
+                    <button class="btn btn-primary px-4" id="btn-kpm-search">Cari</button>
+                </div>
+                <table class="main-table">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Nomor KKS</th>
+                            <th>Nama KKS</th>
+                            <th>Detail</th>
+                        </tr>
+                    </thead>
+                    <tbody id="history-table">
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <script>
+            require('./renderer-process/history/show-history');
+        </script>
+    </section>
+</template>

@@ -4,13 +4,16 @@
             <h1 class="pb-5">Riwayat Transaksi</h1>
             <div class="main-form">
                 <label for="datepick">Pilih tanggal:</label>
-                <input type="date" id="datepick" name="datepick" class="form-control" />
+                <input type="date" id="datepick-history" name="datepick" class="form-control" />
             </div>
             <div class="row">
                 <div class="col-md-5 mt-3 text-center mx-auto">
-                    <button class="btn py-1 px-5 btn-primary mx-auto">Cari</button>
+                    <button class="btn py-1 px-5 btn-primary mx-auto" id="btn-start-history">Cari</button>
                 </div>
             </div>
         </div>
+        <script>
+            require('./renderer-process/history/history');
+        </script>
     </section>
 </template>
