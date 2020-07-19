@@ -8,9 +8,6 @@ const btnAddItem = document.getElementById('btn-add-item');
 let container = document.getElementById('inventory-table-items');
 let monthYear = {};
 
-container.innerHTML = '';
-btnStart.innerHTML = 'Mulai';
-
 // Check empty object of month and year
 if (Object.keys(monthYear).length < 1) {
   btnAddItem.disabled = true;
@@ -48,9 +45,9 @@ ipcRenderer.on('list-items-inventory', (event, result, data) => {
       htmlReady += `<tr>
       <td>${number}</td>
       <td>${res.name}</td>
-      <td>${res.quantity} ${res.unit}</td>
-      <td>${res.buyPrice}</td>
-      <td>${res.sellPrice}</td>
+      <td>${res.quantity.toLocaleString('id')} ${res.unit}</td>
+      <td>Rp${res.buyPrice.toLocaleString('id')}</td>
+      <td>Rp${res.sellPrice.toLocaleString('id')}</td>
       <td>
         <button data-id="${res._id}" id="btn-edit" class="btn btn-info">Sunting</button>
         <button data-id="${res._id}" id="btn-delete" class="btn btn-danger">Hapus</button>
@@ -110,3 +107,11 @@ function inventoryLoad() {
     monthsElement.appendChild(option);
   });
 }
+
+document.body.addEventListener('click', (event) => {
+  if (event.target.dataset.section) {
+    btnAddItem.disabled = true;
+    container.innerHTML = '';
+    btnStart.innerHTML = 'Mulai';
+  }
+});

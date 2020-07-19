@@ -44,7 +44,7 @@ async function searchAllItems(data) {
     return new Promise((res, rej) => {
         db.itemsData
             .find(data)
-            .sort({ createdAt: -1 })
+            .sort({ updatedAt: -1 })
             .exec((err, doc) => {
                 res(doc);
             });

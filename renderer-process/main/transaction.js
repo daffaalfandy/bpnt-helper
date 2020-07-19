@@ -37,8 +37,8 @@ ipcRenderer.on('list-items-transaction', (event, items) => {
             result += `<tr>
             <td>${numberOfItems + 1}</td>
             <td>${item.name}</td>
-            <td>${item.quantity} ${item.unit}</td>
-            <td>@ Rp${item.sellPrice}</td>
+            <td>${item.quantity.toLocaleString('id')} ${item.unit}</td>
+            <td>@ Rp${item.sellPrice.toLocaleString('id')}</td>
             <td>
             <div id="${item._id}" data-quantity="${item.quantity}" class="def-number-input bg-light number-input text-light mx-auto">
             <button id="btn-minus" class="minus"></button>
@@ -91,17 +91,17 @@ function setSumOfPrice(parentEvent, value, action) {
     let priceField = parentEvent.parentNode.parentNode.querySelector('#price-field');
     let sellPrice = Number(priceField.dataset.sellprice);
     let sumOfPrice = sellPrice * value;
-    priceField.innerHTML = `Rp${sumOfPrice}`;
+    priceField.innerHTML = `Rp${sumOfPrice.toLocaleString('id')}`;
     if (sumOfAllField.innerHTML == '' || sumOfAllField.innerHTML == 'Rp0') {
-        sumOfAllField.innerHTML = `Rp${sumOfPrice}`
+        sumOfAllField.innerHTML = `Rp${sumOfPrice.toLocaleString('id')}`
     } else {
-        let sumOfAll = Number(sumOfAllField.innerHTML.substring(2));
+        let sumOfAll = Number(sumOfAllField.innerHTML.substring(2).replace(/[^0-9-,]/g, ''));
         if (action == 'plus') {
             sumOfAll += sellPrice;
         } else if (action == 'minus') {
             sumOfAll -= sellPrice;
         }
-        sumOfAllField.innerHTML = `Rp${sumOfAll}`;
+        sumOfAllField.innerHTML = `Rp${sumOfAll.toLocaleString('id')}`;
     }
 }
 

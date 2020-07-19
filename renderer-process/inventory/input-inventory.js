@@ -14,19 +14,22 @@ let sumOfQuantity = 0;
 let itemId;
 let isEdit = false;
 
+Number('25.000'.replace(/[^0-9-,]/g, ''));
+
 ipcRenderer.on('res-month-year-input-inventory', (event, data) => {
     date = data;
 })
 
 btnCancel.addEventListener('click', () => {
+    clearField();
     inputSection.handleInputTrigger('inventory');
 });
 
 ipcRenderer.on('res-edit-item', (event, data) => {
     nameField.value = data.name;
-    buyPriceField.value = data.buyPrice;
-    sellPriceField.value = data.sellPrice;
-    quantityField.value = data.quantity;
+    buyPriceField.value = data.buyPrice.toLocaleString('id');
+    sellPriceField.value = data.sellPrice.toLocaleString('id');
+    quantityField.value = data.quantity.toLocaleString('id');
     unitField.value = data.unit;
     tempQty = data.quantity;
     sumOfQuantity = data.sumOfQuantity;
@@ -39,9 +42,9 @@ ipcRenderer.on('res-edit-item', (event, data) => {
 btnSimpan.addEventListener('click', () => {
     let { month, year } = date;
     let name = nameField.value;
-    let buyPrice = Number(buyPriceField.value);
-    let sellPrice = Number(sellPriceField.value);
-    let quantity = Number(quantityField.value);
+    let buyPrice = Number(buyPriceField.value.replace(/[^0-9-,]/g, ''));
+    let sellPrice = Number(sellPriceField.value.replace(/[^0-9-,]/g, ''));
+    let quantity = Number(quantityField.value.replace(/[^0-9-,]/g, ''));
     let unit = unitField.value;
 
     if (!isEdit) {

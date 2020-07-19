@@ -2,9 +2,10 @@ const { ipcRenderer } = require('electron');
 const inputSection = require('../../assets/main');
 
 const btnMain = document.getElementById('btn-main');
+let datePickField = document.getElementById('datepick');
 
 btnMain.addEventListener('click', () => {
-    let datepick = document.getElementById('datepick').value.split("-");
+    let datepick = datePickField.value.split("-");
     let year = datepick[0];
     let month = datepick[1];
     let date = datepick[2];
@@ -73,3 +74,12 @@ function watchKKSEvent() {
 }
 
 watchKKSEvent();
+
+document.body.addEventListener('click', (event) => {
+    if (event.target.dataset.section) {
+        // datePickField.value = null;
+        for (i = 1; i < 5; i++) {
+            document.getElementById(`kks-number-${i}`).value = null;
+        };
+    }
+});

@@ -1,37 +1,39 @@
 <template class="task-template">
     <section class="section" id="inventory-section">
-        <h1>Data Barang</h1>
-        <div class="container">
-            <div class="main-form">
-                <label for="month-period">Bulan:</label>
-                <input list="month-list" id="month-period" class="form-control" />
-                <datalist id="month-list"></datalist>
-                <label for="year-period">Tahun:</label>
-                <input list="year-list" id="year-period" class="form-control" />
-                <datalist id="year-list"></datalist>
-                <button class="btn btn-primary" id="btn-inventory-start">Mulai</button>
+        <div class="container pt-5">
+            <h1>Data Barang</h1>
+            <div class="container">
+                <div class="main-form">
+                    <label for="month-period">Bulan:</label>
+                    <input list="month-list" id="month-period" class="form-control" />
+                    <datalist id="month-list"></datalist>
+                    <label for="year-period">Tahun:</label>
+                    <input list="year-list" id="year-period" class="form-control" />
+                    <datalist id="year-list"></datalist>
+                    <button class="btn btn-primary" id="btn-inventory-start">Mulai</button>
+                </div>
             </div>
-        </div>
-        <div class="container">
-            <table class="main-table">
-                <thead>
-                    <tr>
-                        <th>Nomor</th>
-                        <th>Nama Barang</th>
-                        <th>Stok Barang</th>
-                        <th>Harga Beli</th>
-                        <th>Harga Jual</th>
-                        <th>Aksi</th>
-                    </tr>
-                </thead>
-                <tbody id="inventory-table-items">
+            <div class="container">
+                <table class="main-table">
+                    <thead>
+                        <tr>
+                            <th>Nomor</th>
+                            <th>Nama Barang</th>
+                            <th>Stok Barang</th>
+                            <th>Harga Beli</th>
+                            <th>Harga Jual</th>
+                            <th>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody id="inventory-table-items">
 
-                </tbody>
-            </table>
-        </div>
-        <div class="container">
-            <div class="float-right mt-4">
-                <button id="btn-add-item" class="btn btn-primary">Tambahkan Barang</button>
+                    </tbody>
+                </table>
+            </div>
+            <div class="container">
+                <div class="float-right mt-4">
+                    <button id="btn-add-item" class="btn btn-primary">Tambahkan Barang</button>
+                </div>
             </div>
         </div>
         <script>

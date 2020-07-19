@@ -1,47 +1,60 @@
 <template class="task-template">
     <section class="section" id="input-inventory-section">
-        <h1>Data Barang</h1>
-        <div class="container w-50">
-            <div id="input-inventory-section">
-                <div class=container>
-                    <div class="form-group row">
-                        <label for="item-name" class="col-sm-4 my-auto">Nama Barang</label>
-                        <div class="col">
-                            <input type="text" id="item-name" class="form-control" />
+        <div class="container pt-5">
+            <h1>Data Barang</h1>
+            <div class="container w-50">
+                <div id="input-inventory-section">
+                    <div class=container>
+                        <div class="form-group row">
+                            <label for="item-name" class="col-sm-4 my-auto">Nama Barang</label>
+                            <div class="col">
+                                <input type="text" id="item-name" class="form-control" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="item-buyprice" class="col-sm-4 my-auto">Harga Beli</label>
-                        <div class="col">
-                            <input type="text" id="item-buyprice" class="form-control" />
+                        <div class="form-group row">
+                            <label for="item-buyprice" class="col-sm-4 my-auto">Harga Beli</label>
+                            <div class="col">
+                                <input onchange="addDecimalPoints('item-buyprice')" type="text" id="item-buyprice"
+                                    class="form-control" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="item-sellprice" class="col-sm-4 my-auto">Harga Jual</label>
-                        <div class="col">
-                            <input type="text" id="item-sellprice" class="form-control" />
+                        <div class="form-group row">
+                            <label for="item-sellprice" class="col-sm-4 my-auto">Harga Jual</label>
+                            <div class="col">
+                                <input onchange="addDecimalPoints('item-sellprice')" type="text" id="item-sellprice"
+                                    class="form-control" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="item-qty" class="col-sm-4 my-auto">Banyak Barang</label>
-                        <div class="col-sm-4">
-                            <input type="text" id="item-qty" class="form-control" />
+                        <div class="form-group row">
+                            <label for="item-qty" class="col-sm-4 my-auto">Banyak Barang</label>
+                            <div class="col-sm-4">
+                                <input onchange="addDecimalPoints('item-qty')" type="text" id="item-qty"
+                                    class="form-control" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group row">
-                        <label for="item-unit" class="col-sm-4 my-auto">Satuan Barang</label>
-                        <div class="col-sm-4">
-                            <input type="text" id="item-unit" class="form-control" />
+                        <div class="form-group row">
+                            <label for="item-unit" class="col-sm-4 my-auto">Satuan Barang</label>
+                            <div class="col-sm-4">
+                                <input type="text" id="item-unit" class="form-control" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="float-right">
-                        <button id="cancel" class="btn btn-danger">Batal</button>
-                        <button class="btn btn-primary" id="btn-confirm">Simpan</button>
+                        <div class="float-right">
+                            <button id="cancel" class="btn btn-danger">Batal</button>
+                            <button class="btn btn-primary" id="btn-confirm">Simpan</button>
+                        </div>
                     </div>
                 </div>
             </div>
-            <script>
-                require('./renderer-process/inventory/input-inventory');
-            </script>
+        </div>
+        <script type="text/javascript">
+            function addDecimalPoints(id) {
+                var inputElement = document.getElementById(id).value;
+                var newInputElement = Number(inputElement).toLocaleString('id');
+                document.getElementById(id).value = newInputElement;
+            }
+        </script>
+        <script>
+            require('./renderer-process/inventory/input-inventory');
+        </script>
     </section>
 </template>
