@@ -1,0 +1,64 @@
+<template class="task-template">
+    <section class="section" id="transaction-detail-section">
+        <div class="container pt-5 text-white">
+            <h1 class="mb-2">Detail Transaksi</h1>
+            <div class="row mt-5 text-white">
+                <div class="col-md-6 mt-4">
+                    <div class="row mb-4">
+                        <div class="col-md-6 text-right">
+                            <h5>Nomor KKS : </h5>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 id="kks-detail-field">test</h5>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-6 text-right">
+                            <h5>Nama KPM : </h5>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 id="name-detail-field"></h5>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-6 text-right">
+                            <h5>Alamat KPM : </h5>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 id="kpm-detail-address"></h5>
+                        </div>
+                    </div>
+                    <div class="row mb-4">
+                        <div class="col-md-6 text-right">
+                            <h5>Tanggal Transaksi : </h5>
+                        </div>
+                        <div class="col-md-6">
+                            <h5 id="datetime-transaction"></h5>
+                        </div>
+                    </div>
+                    <div class="row fixed-bottom mb-5 ml-4">
+                        <button class="btn btn-primary ml-5 px-5" id="btn-back-detail-transaction">Kembali</button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h4 class="text-center text-white">Daftar Belanja</h4>
+                    <table class="main-table">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Nama Barang</th>
+                                <th>Jumlah Beli</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-detail-transaction">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <script>
+            require('./renderer-process/history/transaction-detail');
+        </script>
+    </section>
+</template>

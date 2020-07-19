@@ -94,6 +94,18 @@ async function searchTransaction(data) {
     });
 }
 
+async function searchOneTransaction(data) {
+    return new Promise((res, rej) => {
+        db.transactionData.findOne(data, (err, data) => {
+            if (data == null) {
+                res(false);
+            } else {
+                res(data);
+            }
+        })
+    })
+}
+
 module.exports.insertOneKPM = insertOneKPM;
 module.exports.searchOneKPM = searchOneKPM;
 module.exports.searchAllItems = searchAllItems;
@@ -103,3 +115,4 @@ module.exports.deleteItem = deleteItem;
 module.exports.insertTransaction = insertTransaction;
 module.exports.updateItem = updateItem;
 module.exports.searchTransaction = searchTransaction;
+module.exports.searchOneTransaction = searchOneTransaction;
