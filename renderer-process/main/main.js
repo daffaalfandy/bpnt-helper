@@ -77,7 +77,6 @@ watchKKSEvent();
 
 document.body.addEventListener('click', (event) => {
     if (event.target.dataset.section) {
-        // datePickField.value = null;
         for (i = 1; i < 5; i++) {
             document.getElementById(`kks-number-${i}`).value = null;
         };

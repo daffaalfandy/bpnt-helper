@@ -4,11 +4,17 @@
             <h1 class="mb-2">Riwayat Transaksi</h1>
             <h5 class="text-white text-center mb-4" id="show-date-history">15 Arpil 2020</h5>
             <div class="container">
-                <div class="main-form text-center">
+                <div class="main-form mb-2 pb-0 text-center">
                     <label for="kpm-search" class="text-white text-center">Cari KPM: </label>
-                    <input type="text" class="form-control" id="kpm-search" placeholder="8 digit terakhir kks">
+                    <input style="max-width: 100px;" type="text" id="kks-search-1" name="kks-number-1" maxlength="4"
+                        class="form-control mr-3" />
+                    <div class="text-white">-</div>
+                    <input style="max-width: 100px;" type="text" id="kks-search-2" name="kks-number-2" maxlength="4"
+                        class="form-control ml-3" />
                     <button class="btn btn-primary px-4" id="btn-kpm-search">Cari</button>
                 </div>
+                <div class="text-center"><small class="text-white text-muted">Masukkan 8 digit
+                        terakhir nomor KKS</small></div>
                 <table class="main-table">
                     <thead>
                         <tr>
