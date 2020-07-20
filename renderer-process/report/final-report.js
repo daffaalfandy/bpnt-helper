@@ -22,7 +22,7 @@ ipcRenderer.on('final-report-data', (event, items) => {
             htmlResult += `<tr>
             <td>${index + 1}</td>
             <td>${item.name}</td>
-            <td>${item.sumOfQuantity - item.quantity}</td>
+            <td>${(item.sumOfQuantity - item.quantity).toLocaleString('id')}</td>
             </tr>`
         })
     } else {

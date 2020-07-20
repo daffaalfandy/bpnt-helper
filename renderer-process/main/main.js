@@ -21,7 +21,7 @@ btnMain.addEventListener('click', () => {
     }
     ipcRenderer.send('main-start', data);
     // Set value back to ''
-    for (i = 1; i < 5; i++) {
+    for (i = 3; i < 5; i++) {
         document.getElementById(`kks-number-${i}`).value = '';
     };
 });
@@ -63,7 +63,7 @@ function _onKKSKeyUpEvent(currentIndex, event) {
     }
 }
 function watchKKSEvent() {
-    for (let i = 1; i <= 4; i++) {
+    for (let i = 3; i <= 4; i++) {
         document.getElementById(`kks-number-${i}`).addEventListener("keyup", (e) => {
             _onKKSKeyUpEvent(i, e);
         });
@@ -77,7 +77,7 @@ watchKKSEvent();
 
 document.body.addEventListener('click', (event) => {
     if (event.target.dataset.section) {
-        for (i = 1; i < 5; i++) {
+        for (i = 3; i < 5; i++) {
             document.getElementById(`kks-number-${i}`).value = null;
         };
     }

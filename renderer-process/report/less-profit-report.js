@@ -2,6 +2,7 @@ const { ipcRenderer, remote } = require('electron');
 const path = require('path');
 const fs = require('fs');
 const inputSection = require('../../assets/main');
+const { sign } = require('crypto');
 
 let btnBackProfit = document.getElementById('btn-back-profit-report');
 let btnAddToPdfProfit = document.getElementById('btn-profit-pdf');
@@ -14,7 +15,16 @@ let summaryTable = document.getElementById('summary');
 let sumOfBuyPrice = 0;
 let sumOfSellPrice = 0;
 
+btnBackProfit.addEventListener('click', (e) => {
+    sumOfBuyPrice = 0;
+    sumOfSellPrice = 0;
+    inputSection.handleInputTrigger('report');
+});
+
 ipcRenderer.on('profit-report-data', (event, items) => {
+    sumOfBuyPrice = 0;
+    sumOfSellPrice = 0;
+
     profitTitleField.innerHTML = `Toko Hari, ${items.itemsData[0].month} ${items.itemsData[0].year}`;
     titleBuyProfitField.innerHTML = `Pembelian Komoditi BPNT ${items.itemsData[0].month} ${items.itemsData[0].year}`;
 
@@ -23,7 +33,6 @@ ipcRenderer.on('profit-report-data', (event, items) => {
     setStockTable(items.itemsData);
 
     setSummaryTable(items.transactionData);
-
 });
 
 function setItemsBuyTable(items) {
@@ -34,13 +43,13 @@ function setItemsBuyTable(items) {
             htmlResult += `<tr>
             <td>${index + 1}</td>
             <td>${item.name}</td>
-            <td>${item.sumOfQuantity} ${item.unit}</td>
-            <td>${item.buyPrice}</td>
-            <td>${sum}</td>
+            <td>${item.sumOfQuantity.toLocaleString('id')} ${item.unit}</td>
+            <td>${item.buyPrice.toLocaleString('id')}</td>
+            <td>${sum.toLocaleString('id')}</td>
             </tr>`
             sumOfBuyPrice += sum;
         });
-        htmlResult += `<tr><td></td><td></td><td></td><td>Total </td><td>${sumOfBuyPrice}</td></tr>`
+        htmlResult += `<tr><td></td><td></td><td></td><td>Total </td><td>Rp ${sumOfBuyPrice.toLocaleString('id')}</td></tr>`
     } else {
         htmlResult += `<tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>`
     }
@@ -55,13 +64,13 @@ function setStockTable(items) {
             htmlResult += `<tr>
             <td>${index + 1}</td>
             <td>${item.name}</td>
-            <td>${item.quantity} ${item.unit}</td>
-            <td>${item.sellPrice}</td>
-            <td>${sum}</td>
+            <td>${item.quantity.toLocaleString('id')} ${item.unit}</td>
+            <td>${item.sellPrice.toLocaleString('id')}</td>
+            <td>${sum.toLocaleString('id')}</td>
             </tr>`
             sumOfSellPrice += sum;
         });
-        htmlResult += `<tr><td></td><td></td><td></td><td>Total </td><td>${sumOfSellPrice}</td></tr>`
+        htmlResult += `<tr><td></td><td></td><td></td><td>Total </td><td>Rp ${sumOfSellPrice.toLocaleString('id')}</td></tr>`
     } else {
         htmlResult += `<tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>`
     }
@@ -89,11 +98,11 @@ function setSummaryTable(items) {
         </tr>
         <tr>
         <td>Total Uang Masuk</td>
-        <td>${sumOfMoney}</td>
+        <td>Rp ${sumOfMoney.toLocaleString('id')}</td>
         </tr>
         <tr>
         <td>${profitStatus}</td>
-        <td>${profit}</td>
+        <td>Rp ${profit.toLocaleString('id')}</td>
         </tr>`
     }
     summaryTable.innerHTML = htmlResult;
