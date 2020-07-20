@@ -1,0 +1,41 @@
+<template class="task-template">
+    <section class="section" id="final-report-section" style="background-color: white;">
+        <div class="row">
+            <div class="col-sm">
+                <button id="btn-back-final-report" class="btn btn-primary ml-4 mt-4">
+                    Kembali
+                </button>
+                <button class="btn btn-success mr-4 mt-4 float-right" id="btn-final-pdf">Simpan PDF</button>
+            </div>
+        </div>
+        <div class="row m-1">
+            <div class="col-sm-10 mx-auto">
+                <h1 class="text-center pt-4 mb-0 text-dark">Laporan Program Bantuan Pangan Non Tunai</h1>
+                <h1 class="text-center mb-0 mt-0 pb-0 text-dark" id="final-title"></h1>
+            </div>
+        </div>
+        <div class="row m-2 text-center">
+            <div class="col-md-6 mx-auto">
+                <h5 id="jml-kpm"></h5>
+            </div>
+        </div>
+        <div class="row m-2 text-center">
+            <div class="col-md-6 mx-auto">
+                <table class="main-table text-dark">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Nama Barang</th>
+                            <th>Jumlah Barang yang Terjual</th>
+                        </tr>
+                    </thead>
+                    <tbody id="final-report-table">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <script>
+            require('./renderer-process/report/final-report');
+        </script>
+    </section>
+</template>
