@@ -120,11 +120,16 @@ btnBuy.addEventListener('click', () => {
             });
         }
     }
+    let totalPrice = Number(sumOfAllField.innerHTML.substring(2).replace(/[^0-9-,]/g, ''));
     let data = {
         kks: kksData,
         name: kpmName,
         items,
-        dateTimeData
+        dateTimeData,
+        date: dateTimeData.date,
+        month: dateTimeData.month,
+        year: dateTimeData.year,
+        totalPrice
     };
     ipcRenderer.send('transaction-data', data);
 

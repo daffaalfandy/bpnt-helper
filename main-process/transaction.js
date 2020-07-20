@@ -20,6 +20,5 @@ ipcMain.on('transaction-detail', async (event, id) => {
         dateTime: { date, newMonth, year },
         items,
     }
-    console.log(data);
     event.sender.send('transaction-detail-data', data);
 });
