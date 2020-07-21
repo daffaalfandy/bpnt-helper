@@ -115,7 +115,7 @@ function setSummaryTable(items) {
 }
 
 btnAddToPdfProfit.addEventListener('click', (event) => {
-    let filepath1 = path.join(__dirname, `../../laporan/laporan-laba-rugi-${datePdf.month}-${datePdf.year}.pdf`);
+    let filepath1 = `laporan/laporan-laba-rugi-${datePdf.month}-${datePdf.year}.pdf`;
 
     let options = {
         marginsType: 0,

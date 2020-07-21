@@ -1,3 +1,0 @@
-{"name":"Ayam","buyPrice":10000,"sellPrice":15000,"quantity":0,"sumOfQuantity":10,"unit":"kg","month":"Juli","year":"2020","_id":"HwNTGSnpqU7pFsHw","createdAt":{"$$date":1595240218616},"updatedAt":{"$$date":1595240470843}}
-{"name":"Beras","buyPrice":2000,"sellPrice":3000,"quantity":2,"sumOfQuantity":10,"unit":"kg","month":"Juli","year":"2020","_id":"aPqgK6mvKJlPfSKv","createdAt":{"$$date":1595240182552},"updatedAt":{"$$date":1595240470895}}
-{"name":"Gula Pasir","buyPrice":3000,"sellPrice":4000,"quantity":1,"sumOfQuantity":15,"unit":"pcs","month":"Juli","year":"2020","_id":"iTdQFBKWvN5kF8dc","createdAt":{"$$date":1595240198268},"updatedAt":{"$$date":1595240470872}}

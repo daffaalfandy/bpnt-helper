@@ -22,7 +22,7 @@ ipcRenderer.on('final-report-data', (event, items) => {
             htmlResult += `<tr>
             <td>${index + 1}</td>
             <td>${item.name}</td>
-            <td>${(item.sumOfQuantity - item.quantity).toLocaleString('id')}</td>
+            <td>${(item.sumOfQuantity - item.quantity).toLocaleString('id')} ${item.unit}</td>
             </tr>`
         })
     } else {
@@ -42,7 +42,8 @@ btnBackReport.addEventListener('click', (e) => {
 // Convert to PDF
 
 btnToPdf.addEventListener('click', (event) => {
-    let filepath1 = path.join(__dirname, `../../laporan/laporan-akhir-${datePDF.month}-${datePDF.year}.pdf`);
+    // let filepath1 = path.join(__dirname, `../../laporan/laporan-akhir-${datePDF.month}-${datePDF.year}.pdf`);
+    let filepath1 = `laporan/laporan-akhir-${datePDF.month}-${datePDF.year}.pdf`;
 
     let options = {
         marginsType: 0,

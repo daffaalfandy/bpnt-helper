@@ -5,7 +5,7 @@ const url = require('url');
 
 let mainWindow = null;
 // SET ENV
-process.env.NODE_ENV = 'dev';
+process.env.NODE_ENV = 'prod';
 
 function initialize() {
     makeSingleInstanceLock();
