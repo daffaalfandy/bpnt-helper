@@ -3,6 +3,7 @@ BPNT Helper is a desktop application that helps the BPNT agents in carrying out 
 
 ## Tech / Framwork Used
 **- ElectronJs**
+
 **- NeDB**
 
 ## Installation
@@ -39,7 +40,9 @@ yarn run package-win
 
 ## Credits
 Thanks to: 
+
 **- Ariq Fadlan as frontend [ariqfadlan](https://github.com/ariqfadlan)**
+
 **- Abyan Burhanudin as designer [AbyanAhmad](https://github.com/AbyanAhmad)**
 
 ## License
