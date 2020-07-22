@@ -1,9 +1,11 @@
 # BPNT Helper
-BPNT Helper is a desktop application that helps the BPNT agents in carrying out the buying and selling process. Like the cashier program in general, but with many changes that adjust to the requirements needed.
+[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 
-## Tech / Framwork Used
+BPNT Helper is a desktop application that helps the BPNT agents in carrying out the buying and selling process. It resembles POS (Point-of-Sale) system, but stripped down--adjusted to meet the simpler requirements. Written in JavaScript and built with Electron and NeDB, all of which run locally. For the time being, user interface is hardcoded into Bahasa Indonesia.
+
+## Tech / Framework Used
+
 **- ElectronJs**
-
 **- NeDB**
 
 ## Installation
@@ -11,23 +13,21 @@ Use the package manager [npm](https://www.npmjs.com/get-npm) or [yarn](https://c
 
 #### To install dependencies
 ```bash
-## npm
-npm install
-
-## yarn
-yarn install
+$ npm install
+```
+```bash
+$ yarn install
 ```
 
 #### To run development 
 ```bash
-### npm 
-npm run start
-
-### yarn
-yarn run start
+$ npm run start
+```
+```bash
+$ yarn run start
 ```
 
-#### To package your application
+#### To deploy package into Windows executable
 `Windows executable file`
 ```bash
 ### npm
@@ -36,14 +36,11 @@ npm run package-win
 ### yarn
 yarn run package-win
 ```
+
 **Please manually make `laporan` folder after package the application.**
 
 ## Credits
 Thanks to: 
 
-**- Ariq Fadlan as frontend [ariqfadlan](https://github.com/ariqfadlan)**
-
-**- Abyan Burhanudin as designer [AbyanAhmad](https://github.com/AbyanAhmad)**
-
-## License
-[BSD-3-Caluse](https://choosealicense.com/licenses/bsd-3-clause-clear/)
+**- [Ariq Fadlan](https://github.com/ariqfadlan) as frontend developer**
+**- [Abyan Burhanudin](https://github.com/AbyanAhmad) as UI/UX designer**
