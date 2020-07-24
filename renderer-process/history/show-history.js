@@ -48,7 +48,7 @@ btnKpmSearch.addEventListener('click', (event) => {
     for (var i = 1; i <= 2; i++) {
         kksSearchValue += document.getElementById(`kks-search-${i}`).value;
     }
-    if (kksSearchValue != 0) {
+    if (kksSearchValue != '') {
         for (var i = 0; i < oldData.length; i++) {
             if (kksSearchValue == oldData[i].kks.substring(8)) {
                 htmlResult += `<tr>

@@ -28,6 +28,10 @@ ipcMain.on('kpm-data-input', async (event, data) => {
     event.sender.send('res-kpm-data', data);
 });
 
+ipcMain.on('kpm-data-input-inventory', async (event, data) => {
+    db.insertOneKPM(data);
+});
+
 ipcMain.on('transaction-data', async (event, data) => {
     let { items } = data;
     for (var i = 0; i < items.length; i++) {
@@ -37,4 +41,8 @@ ipcMain.on('transaction-data', async (event, data) => {
         db.updateItem(itemData._id, { quantity });
     }
     db.insertTransaction(data);
+});
+
+ipcMain.on('input-kpm-from-inventory', async (event) => {
+    event.sender.send('confirm-input-kpm-from-inventory');
 });
