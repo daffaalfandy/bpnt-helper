@@ -1,3 +1,4 @@
+const { ipcRenderer } = require('electron');
 const inputSection = require('../../assets/main');
 
 const btnInventoryStart = document.getElementById('btn-items');
@@ -8,5 +9,6 @@ btnInventoryStart.addEventListener('click', () => {
 });
 
 btnKpmStart.addEventListener('click', () => {
+    ipcRenderer.send('list-all-kpm');
     inputSection.handleInputTrigger('kpm-data');
 });

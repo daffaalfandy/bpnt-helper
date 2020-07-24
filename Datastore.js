@@ -38,6 +38,17 @@ async function searchOneKPM(key, value) {
     })
 }
 
+async function searchAllKpm() {
+    return new Promise((res, rej) => {
+        db.kpmData
+            .find({})
+            .sort({ createdAt: -1 })
+            .exec((err, docs) => {
+                res(docs)
+            });
+    });
+}
+
 // Data Function
 
 async function searchAllItems(data) {
@@ -116,3 +127,4 @@ module.exports.insertTransaction = insertTransaction;
 module.exports.updateItem = updateItem;
 module.exports.searchTransaction = searchTransaction;
 module.exports.searchOneTransaction = searchOneTransaction;
+module.exports.searchAllKpm = searchAllKpm;

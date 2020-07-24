@@ -1,0 +1,37 @@
+<template class="task-template">
+    <section class="section" id="kpm-data-section">
+        <div class="container pt-5">
+            <h1 class="mb-4">Data KPM</h1>
+            <div class="container">
+                <div class="main-form pb-0 mb-0 text-center">
+                    <label for="kpm-search" class="text-white text-center">Cari KPM: </label>
+                    <input style="max-width: 100px;" type="text" id="kks-data-search-1" name="kks-number-1"
+                        maxlength="4" class="form-control mr-3" />
+                    <div class="text-white">-</div>
+                    <input style="max-width: 100px;" type="text" id="kks-data-search-2" name="kks-number-2"
+                        maxlength="4" class="form-control ml-3" />
+                    <button class="btn btn-primary px-4" id="btn-kpm-data-search">Cari</button>
+                </div>
+                <div class="text-center"><small class="text-white text-muted">Masukkan 8 digit
+                        terakhir nomor KKS</small></div>
+                <button class="btn btn-primary px-4" id="btn-add-kpm-data">Tambah KPM</button>
+                <table class="main-table mt-2">
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Nomor KKS</th>
+                            <th>Nama KPM</th>
+                            <th>Alamat</th>
+                        </tr>
+                    </thead>
+                    <tbody id="kpm-table">
+
+                    </tbody>
+                </table>
+            </div>
+            <script>
+                require('./renderer-process/inventory/kpm-data');
+            </script>
+        </div>
+    </section>
+</template>

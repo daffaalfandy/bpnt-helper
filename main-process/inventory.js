@@ -50,3 +50,8 @@ ipcMain.on('inventory-edit-item', async (event, data, itemId) => {
     let result = await db.searchAllItems(monthYear);
     event.sender.send('list-items-inventory', result, monthYear);
 });
+
+ipcMain.on('list-all-kpm', async (event) => {
+    let result = await db.searchAllKpm();
+    event.sender.send('list-all-kpm-data', result);
+});

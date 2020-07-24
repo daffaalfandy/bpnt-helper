@@ -3,9 +3,11 @@ const inputSection = require('../../assets/main');
 
 let itemsHistoryField = document.getElementById('history-table');
 let btnKpmSearch = document.getElementById('btn-kpm-search');
+let dateHistoryField = document.getElementById('show-date-history');
 let oldData = [];
 
-ipcRenderer.on('transaction-history-data', (event, items) => {
+ipcRenderer.on('transaction-history-data', (event, items, datetime) => {
+    dateHistoryField.innerHTML = `${datetime.date}  ${datetime.month}  ${datetime.year}`;
     oldData = [...items];
     itemsHistoryField.innerHTML = '';
     let result = '';
