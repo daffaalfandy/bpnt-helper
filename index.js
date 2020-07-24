@@ -29,7 +29,7 @@ function initialize() {
             slashes: true
         }))
 
-        if (process.env.NODE_ENV !== 'prod') {
+        if (process.env.NODE_ENV !== 'deploy') {
             mainWindow.webContents.openDevTools();
         }
 
